@@ -20,23 +20,21 @@ devtools::load_all()
 
 
 
-#------------ การส่ง R Package ให้ อ.พัค ------------
-
-#วิธีที่ 1: บีบอัดเป็นไฟล์ .zip (รวดเร็วและง่ายที่สุด)
-devtools::install_local("ที่อยู่ไฟล์/LHmom.zip")
-
-#วิธีที่ 2: สร้างเป็นไฟล์แพ็กเกจมาตรฐาน (.tar.gz)
-devtools::build()
-install.packages("ที่อยู่ไฟล์/LHmom_0.1.0.tar.gz", repos = NULL, type = "source")
-
-#วิธีที่ 3: อัปโหลดขึ้น GitHub (มืออาชีพและอัปเดตง่ายที่สุด)
-devtools::install_github("ชื่อ_username_ของคุณ/LHmom")
-devtools::install_github("palakorn-seenoi/LHmom")
 
 
 # use_r -------------------------------------------------------------------
 
+usethis::use_r("lhmoms")
+usethis::use_r("initk.lhme.R")
+usethis::use_r("lh.pargev.R")
 usethis::use_r("lh.pargno.R")
+usethis::use_r("lh.pargpa_glo.R")
+usethis::use_r("lh.pargum.R")
+usethis::use_r("lh.park3d.hfix.R")
+usethis::use_r("lh.park3d.kfix.R")
+usethis::use_r("lh.park4d.R")
+usethis::use_r("lh.parpe3.R")
+usethis::use_r("wang.test.lhgev.R")
 
 devtools::document()
 
@@ -48,10 +46,14 @@ devtools::document()
 
 # use_import_from ----------------------------------------------------------------
 
-#use_package("lmomco")
-#use_package("nleqslv")
-
+use_import_from("lmomco", "lmoms")
+use_import_from("lmomco", "pargev")
 use_import_from("lmomco", "pargno")
+use_import_from("lmomco", "pargno")
+use_import_from("lmomco", "pargno")
+use_import_from("lmomco", "pargno")
+use_import_from("lmomco", "pargno")
+
 use_import_from("nleqslv", "nleqslv")
 
 devtools::document()
@@ -109,3 +111,16 @@ for (eta in 0:4){
 }
 
 
+
+#------------ การส่ง R Package ให้ อ.พัค ------------
+
+#วิธีที่ 1: บีบอัดเป็นไฟล์ .zip (รวดเร็วและง่ายที่สุด)
+devtools::install_local("ที่อยู่ไฟล์/LHmom.zip")
+
+#วิธีที่ 2: สร้างเป็นไฟล์แพ็กเกจมาตรฐาน (.tar.gz)
+devtools::build()
+install.packages("ที่อยู่ไฟล์/LHmom_0.1.0.tar.gz", repos = NULL, type = "source")
+
+#วิธีที่ 3: อัปโหลดขึ้น GitHub (มืออาชีพและอัปเดตง่ายที่สุด)
+devtools::install_github("ชื่อ_username_ของคุณ/LHmom")
+devtools::install_github("palakorn-seenoi/LHmom")
