@@ -70,6 +70,8 @@ load_all()
 devtools::build()
 devtools::build(binary=TRUE)
 
+
+
 #----------- Checking Package ---------------------------------------
 
 library(LHmom)
@@ -87,7 +89,7 @@ lhmoms
 pargno
 
 
-#----------- sample Running ---------------------------------------
+#----------- Sample Running ---------------------------------------
 
 data("rain_khonkaen")
 rain_khonkaen
@@ -96,12 +98,12 @@ data
 
 eta=0
 pargno(lmoms(data))
-lh.pargno(data,eta=eta, opt=FALSE)
-lh.pargno(data,eta=eta, opt=TRUE)
+lh.pargno(data, eta=eta, opt=FALSE)
+lh.pargno(data, eta=eta, opt=TRUE)
 
 for (eta in 0:4){
-  lhold= lh.pargno(data,eta=eta, opt=FALSE)
-  lhnew= lh.pargno(data,eta=eta, opt=TRUE)
+  lhold= lh.pargno(data, eta=eta, opt=FALSE)
+  lhnew= lh.pargno(data, eta=eta, opt=TRUE)
   cat("eta, para.old =", eta, lhold$para,"\n")
   cat("eta, para.new =", eta, lhnew$para,"\n")
 }
