@@ -4,9 +4,28 @@
 # lhmoms(data,eta=seq(0,4)) or lhmoms(data,eta=2)
 #------------------------------------------------------------------
 
-#' Sample LH-moments from data
+#' Calculate Sample LH-moments
 #'
-#' Calculate sample LH-moments from sample data
+#' This function computes the sample LH-moments and LH-moment ratios from a numeric
+#' dataset. The estimation is based on the methodology proposed by Wang (1997).
+#' The order parameter \code{eta} determines the weight assigned to larger observations.
+#' When \code{eta = 0}, the calculation reduces to the ordinary sample L-moments.
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (or a sequence of integers) between 0 and 4
+#'   representing the order of the LH-moments.
+#' @param nmom An integer specifying the maximum number of moments to compute (default is 5).
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{eta}: The order(s) of the LH-moments.
+#'   \item \code{lambdas}: A matrix of the calculated sample LH-moments.
+#'   \item \code{ratios}: A matrix of the calculated sample LH-moment ratios.
+#' }
+#'
+#' @references Wang, Q. J. (1997). Using higher order L-moments for regional
+#' flood frequency analysis. \emph{Water Resources Research}, 33(12), 2841-2848.
+#'
 #' @export
 lhmoms= function(data, eta=NULL, nmom=5){
 
@@ -63,3 +82,4 @@ lhmoms= function(data, eta=NULL, nmom=5){
   colnames(z$ratios)  <- paste0("lht-",1:nmom," ")
   z
 }
+
