@@ -120,6 +120,7 @@ help(package = "LHmom")
 ?lhmom.k3d.hfix
 ?lhmom.k3d.kfix
 ?lhmom.gum
+?rain_khonkaen
 
 lmoms(data)
 lhmoms(data, eta = 1)
