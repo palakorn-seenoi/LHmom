@@ -4,12 +4,19 @@
 \name{LHmom-package}
 \alias{LHmom}
 \alias{LHmom-package}
-\title{LHmom: What the Package Does (One Line, Title Case)}
+\title{LHmom: Parameter Estimation and Total Calculations of Linear Higher-Order Moments (LH-Moments)}
 \description{
-What the package does (one paragraph).
+Computes sample and theoretical Linear Higher-Order Moments (LH-moments) and implements parameter estimation for various statistical distributions, including the Generalized Extreme Value (GEV), Generalized Logistic (GLO), Generalized Pareto (GPA), Generalized Normal (GNO), Pearson Type III (PE3), and Kappa distributions. It also provides analytical tools such as Wang's goodness-of-fit test. The design, parameterization, and output structures of this package closely follow the style and conventions of the 'lmomco' package to ensure a familiar and consistent interface for users accustomed to L-moment calculations in R.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Palakorn Seenoi \email{palakorns@kku.ac.th}
+
+Authors:
+\itemize{
+  \item Yire Shin \email{shinyire@daum.net}
+  \item Jeong-Soo Park \email{jspark@jnu.ac.kr}
+  \item Piyapatr Busababodhin \email{piyapatr.b@msu.ac.th}
+}
 
 }
 \keyword{internal}
