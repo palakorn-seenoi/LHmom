@@ -7,9 +7,42 @@
 #   lhmom.kap(c(para,-1),eta)
 # }
 #---------------------------------------------------------
-#' LH-moments parameters estimation for K4D distribution
+
+#' Estimate Parameters of the Four-Parameter Kappa Distribution using LH-moments
 #'
-#' Function to calculate LH-moments parameters estimation for K4D distribution
+#' This function estimates the parameters of the four-parameter Kappa (K4D) distribution
+#' based on the sample LH-moments. It utilizes numerical optimization (\code{nleqslv})
+#' to simultaneously solve for the two shape parameters, \code{k} and \code{h}.
+#' If the optimization fails or becomes unstable, the function provides fallback
+#' mechanisms utilizing fixed-parameter Kappa estimations. When \code{eta = 0},
+#' it defaults to the ordinary L-moments estimation via \code{lmomco::parkap}.
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#' @param snap.tau4 A logical value indicating whether to snap the sample L-kurtosis
+#'   (\code{tau4}) downward if it slightly exceeds the theoretical upper bound.
+#'   Default is \code{TRUE}.
+#' @param nudge.tau4 A small numeric value used to adjust \code{tau4} downward
+#'   if \code{snap.tau4 = TRUE}. Default is \code{1e-5}.
+#' @param hlow A numeric scalar representing the lower bound for the shape parameter
+#'   \code{h}. If \code{NULL}, it defaults to \code{-eta - 1}.
+#' @param ntry An integer specifying the maximum number of initialization attempts
+#'   for the numerical optimization solver. Default is 10.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{type}: The distribution type (\code{"kap"}).
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{mu} for location, \code{sigma} for scale, \code{k} and \code{h} for shapes).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{ifail}: A numeric indicator of the optimization solver's status
+#'     (0 for success, 1 for fallback success, 5 for failure).
+#'   \item \code{precision}: The final function values from the solver.
+#'   \item \code{source}: The name of the function (\code{"lh.parkap"}).
+#'   \item \code{ifailtext}: A descriptive message regarding the estimation success or failure.
+#' }
+#'
 #' @importFrom lmomco  lmoms
 #' @importFrom lmomco  parkap
 #' @importFrom nleqslv nleqslv
@@ -47,13 +80,14 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
       if(any(is.na(z$para))) {
         z$message ="Failure to estim k4D at eta=0"
         z$ifail=5
-        retrun(z)}
+        return(z)
+      }
     }
 
     z$type="kap";  z$eta=0
     z$source="lh.park4d"
-    z$snap.tau4 = snap.tau4
-    z$nudge.tau4=nudge.tau4
+    # z$snap.tau4 = snap.tau4
+    # z$nudge.tau4= nudge.tau4
 
     z$ifailtext=NULL
     if(z$ifail== -1){
@@ -123,7 +157,7 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
 
         if(abs(fvec[1]) <= ftol*10 & abs(fvec[2]) > ftol*10){
           z2=list()
-          z2= lh.park3d.kfix(data, eta,kfix=sol[1])
+          z2= lh.park3d.kfix(data, eta, kfix=sol[1])
 
           if(z2$ifail==0) {
             ifail=1
@@ -139,7 +173,7 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
 
         }else if(abs(fvec[1]) > ftol*10 & abs(fvec[2]) <= ftol*10){
           z2=list()
-          z2= lh.park3d.hix(data, eta,hfix=sol[2])
+          z2= lh.park3d.hfix(data, eta,hfix=sol[2])
 
           if(z2$ifail==0) {
             ifail=1
@@ -171,6 +205,7 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
         itry = itry + 1
         ftol= itry*ftolz
         xtol= itry*xtolz
+        fvec= c(10^6, 10^6)
 
         if (itry > ntry) { ifail =5; break }
 
@@ -187,8 +222,8 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
     z$type="kap"
 
     z$eta=eta
-    z$snap.tau4 = snap.tau4
-    z$nudge.tau4=subt
+    # z$snap.tau4 = snap.tau4
+    # z$nudge.tau4=subt
     z$ifailtext="failue for k4d"
     return(z)
   }
@@ -234,11 +269,10 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
   }
 
   return(list(type = "kap", para = para, eta=eta,
-              ifail=ifail,
-              precision=fvec, snap.tau4=snap.tau4,
-              nudge.tau4=subt, source="lh.parkap",
-              ifailtext=ifailtext))
+              ifail=ifail, precision=fvec, #snap.tau4=snap.tau4, nudge.tau4=subt,
+              source="lh.parkap", ifailtext=ifailtext))
 }
+
 
 
 
@@ -246,9 +280,29 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
 # Calculate the theoretical LH moments for K4D,
 # based on Murshed et al.(2015) SERRA
 #--------------------------------------------------------------
-#' Theoretical LH-moments function of K4D distribution
+
+#' Calculate Theoretical LH-moments for the Four-Parameter Kappa Distribution
 #'
-#' Function to calculate Theoretical LH-moments for K4D distribution
+#' This function computes the theoretical LH-moments and LH-moment ratios for
+#' the four-parameter Kappa (K4D) distribution given its parameters. The computations
+#' are analytically derived based on the formulas presented by Murshed et al. (2015).
+#'
+#' @param para A numeric vector of four parameters: c(xi, alpha, k, h), corresponding
+#'   to the location, scale, and the two shape parameters of the K4D distribution.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{lambdas}: A named numeric vector of the first four theoretical LH-moments.
+#'   \item \code{ratios}: A named numeric vector of the corresponding LH-moment ratios.
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{type}: The distribution type (\code{"kap"}).
+#' }
+#'
+#' @references Murshed, S. M., et al. (2015). Theoretical LH-moments of the Kappa
+#' distribution. \emph{Stochastic Environmental Research and Risk Assessment (SERRA)}.
+#'
 #' @importFrom lmomco   lmoms
 #' @importFrom lmomco   vec2par
 #' @importFrom lmomco   lmomkap
@@ -272,9 +326,17 @@ lhmom.kap = function(para=NULL, eta=1){
   k= para[3]
   h= para[4]
 
+  if(h == 0) {
+    z= lhmom.gev(para[1:3],eta)
+    z$eta = eta
+    z$type="kap"
+    return(z)
+  }
+
   small=1e-5
-  if(abs(k) < small) k=sign(k)*small
-  if(abs(h) < small) h=sign(h)*small
+  if(k != 0 & abs(k) < small) k=sign(k)*small
+  if(k == 0) k= -small
+  if(h != 0 & abs(h) < small) h=sign(h)*small
 
   lambdas= ratios= rep(NA, nmom)
   B=rep(NA,8)
@@ -323,6 +385,8 @@ lhmom.kap = function(para=NULL, eta=1){
 
   z$lambdas = lam
   z$ratios = tau
+  names(z$lambdas) <- paste0("LHmom-",1:nmom)
+  names(z$ratios)  <- paste0("LHtau-",1:nmom)
   z$eta = eta
   z$type="kap"
   z
@@ -330,13 +394,24 @@ lhmom.kap = function(para=NULL, eta=1){
 
 
 
+
 #--------------------------------------------------------
-#' Initial parameters of K4D distribution
+# Initial parameters of K4D distribution
+#--------------------------------------------------------
+
+#' Generate Initial Parameters for Four-Parameter Kappa Optimization
 #'
-#' Function to calculate initial parameters of LH-moments for K4D distribution
-#' @importFrom lmomco  lmoms
-#' @importFrom lmomco  parkap
-#' @export
+#' An internal helper function used to initialize the shape parameters (\code{k} and \code{h})
+#' for the numerical optimization routines involved in estimating the four-parameter
+#' Kappa distribution via LH-moments.
+#'
+#' @param data A numeric vector of data values.
+#' @param ntry An integer specifying the number of initial parameter combinations
+#'   to generate. Minimum is 5. Default is 5.
+#'
+#' @return A matrix containing \code{ntry} rows and 2 columns, representing
+#'   various starting points for the \code{k} and \code{h} shape parameters.
+#' @keywords internal
 initkh.k4d = function(data, ntry=5){
 
   init= matrix(NA,max(5,ntry),2)
@@ -349,8 +424,8 @@ initkh.k4d = function(data, ntry=5){
     init[1,]= c(pargev(lmom0)$para[3],-0.05) }
 
   init[2,]= c(-0.25,-0.75)
-  init[3,]= park3h(lmoms(data),hfix=-2)$para[3:4]
-  init[4,]= park3h(lmoms(data),hfix=1.5)$para[3:4]
+  init[3,]= lh.park3d.hfix(data,eta=0, hfix=-1)$para[3:4]
+  init[4,]= lh.park3d.hfix(data,eta=0, hfix=1)$para[3:4]
   init[5,]= c(0.25, 0.75)
 
   if(ntry >= 6){
@@ -366,3 +441,4 @@ initkh.k4d = function(data, ntry=5){
 
   init
 }
+
