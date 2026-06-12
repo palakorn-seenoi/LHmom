@@ -1,0 +1,59 @@
+# Package index
+
+## All functions
+
+- [`lh.pargev()`](lh.pargev.md) : Estimate Parameters of the Generalized
+  Extreme Value (GEV) Distribution using LH-moments
+- [`lh.parggd()`](lh.parggd.md) : Estimate Parameters of the Generalized
+  Gumbel (GGD) Distribution using LH-moments
+- [`lh.parglo()`](lh.parglo.md) : Estimate Parameters of the Generalized
+  Logistic (GLO) Distribution using LH-moments
+- [`lh.pargno()`](lh.pargno.md) : Estimate Parameters of the Generalized
+  Normal (GNO) Distribution using LH-moments
+- [`lh.pargpa()`](lh.pargpa.md) : Estimate Parameters of the Generalized
+  Pareto (GPA) Distribution using LH-moments
+- [`lh.pargum()`](lh.pargum.md) : Estimate Parameters of the Gumbel
+  Distribution using LH-moments
+- [`lh.park3d.hfix()`](lh.park3d.hfix.md) : Estimate Parameters of the
+  Three-Parameter Kappa Distribution with Fixed h
+- [`lh.park3d.kfix()`](lh.park3d.kfix.md) : Estimate Parameters of the
+  Three-Parameter Kappa Distribution with Fixed k
+- [`lh.parkap()`](lh.parkap.md) : Estimate Parameters of the
+  Four-Parameter Kappa Distribution using LH-moments
+- [`lh.parpe3()`](lh.parpe3.md) : Estimate Parameters of the Pearson
+  Type III (PE3) Distribution using LH-moments
+- [`lhmom.gev()`](lhmom.gev.md) : Calculate Theoretical LH-moments for
+  the Generalized Extreme Value (GEV) Distribution
+- [`lhmom.ggd()`](lhmom.ggd.md) : Theoretical LH-moments for the
+  Generalized Gumbel (GGD) Distribution
+- [`lhmom.glo()`](lhmom.glo.md) : Theoretical LH-moments for the
+  Generalized Logistic (GLO) Distribution
+- [`lhmom.gno()`](lhmom.gno.md) : Calculate Theoretical LH-moments for
+  the Generalized Normal (GNO) Distribution
+- [`lhmom.gpa()`](lhmom.gpa.md) : Theoretical LH-moments for the
+  Generalized Pareto (GPA) Distribution
+- [`lhmom.gum()`](lhmom.gum.md) : Theoretical LH-moments for Gumbel
+  Distribution
+- [`lhmom.k3d.hfix()`](lhmom.k3d.hfix.md) : Theoretical LH-moments for
+  the Three-Parameter Kappa Distribution with Fixed h
+- [`lhmom.k3d.kfix()`](lhmom.k3d.kfix.md) : Theoretical LH-moments for
+  the Three-Parameter Kappa Distribution with Fixed k
+- [`lhmom.kap()`](lhmom.kap.md) : Calculate Theoretical LH-moments for
+  the Four-Parameter Kappa Distribution
+- [`lhmom.pe3()`](lhmom.pe3.md) : Calculate Theoretical LH-moments for
+  the Pearson Type III (PE3) Distribution
+- [`lhmoms()`](lhmoms.md) : Calculate Sample LH-moments
+- [`rain_bangkok`](rain_bangkok.md) : Annual Maximum Daily Rainfall for
+  Bangkok
+- [`rain_khonkaen`](rain_khonkaen.md) : Annual Maximum Daily Rainfall
+  for Khon Kaen
+- [`rain_mahasarakham`](rain_mahasarakham.md) : Annual Maximum Daily
+  Rainfall for Maha Sarakham
+- [`rain_thaphra`](rain_thaphra.md) : Annual Maximum Daily Rainfall for
+  Tha Phra, Khon Kaen
+- [`temp_khonkaen`](temp_khonkaen.md) : Annual Maximum Daily Temperature
+  for Khon Kaen
+- [`temp_mahasarakham`](temp_mahasarakham.md) : Annual Maximum Daily
+  Temperature for Maha Sarakham
+- [`wang.test.lhgev()`](wang.test.lhgev.md) : Wang's Goodness-of-Fit
+  Test for the Generalized Extreme Value (GEV) Distribution
