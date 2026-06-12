@@ -2,10 +2,29 @@
 % Please edit documentation in R/lh.pargno.R
 \name{lhmom.gno}
 \alias{lhmom.gno}
-\title{Theoretical LH-moments function of GNO distribution}
+\title{Calculate Theoretical LH-moments for the Generalized Normal (GNO) Distribution}
 \usage{
 lhmom.gno(para = NULL, eta = 1)
 }
+\arguments{
+\item{para}{A numeric vector of three parameters: c(xi, alpha, k), corresponding
+to the location, scale, and shape parameters of the GNO distribution, respectively.}
+
+\item{eta}{A non-negative integer (between 0 and 4) representing the order
+of the LH-moments. Default is 1.}
+}
+\value{
+A list containing:
+\itemize{
+\item \code{lambdas}: A named numeric vector of the first four theoretical LH-moments.
+\item \code{ratios}: A named numeric vector of the corresponding LH-moment ratios.
+\item \code{eta}: The order of the LH-moments used.
+\item \code{type}: The distribution type (\code{"gno"}).
+}
+}
 \description{
-Function to calculate theoretical LH-moments for GNO distribution
+This function computes the theoretical LH-moments and LH-moment ratios for
+the Generalized Normal (GNO) distribution given its parameters. When the
+order \code{eta = 0}, it falls back to the ordinary L-moments using the
+\code{lmomco} package.
 }
