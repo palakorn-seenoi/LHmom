@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 ^LHmom\.Rproj$
 ^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^Setting_LHmom\.R$
