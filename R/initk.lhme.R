@@ -1,9 +1,25 @@
 #---------------------------------------------
-#' Initial parameters
+#' Generate Initial Parameters for LH-moments Optimization
 #'
-#' Function to calculate Initial parameters for LH-moments
+#' An internal helper function to generate a vector of initial estimates for
+#' the shape parameter (typically \code{k}) used in the numerical optimization
+#' of LH-moments. It uses standard L-moments to find a baseline parameter
+#' and generates variations around it to prevent the solver from getting stuck.
+#'
+#' @param data A numeric vector of data values.
+#' @param model A character string specifying the distribution model abbreviation
+#'   (e.g., \code{"gev"}, \code{"gno"}). This string is used to dynamically call
+#'   the corresponding \code{lmomco} function (e.g., \code{pargev}).
+#' @param ntry An integer specifying the number of initial parameter combinations
+#'   to generate. Minimum is 5. Default is 5.
+#'
+#' @return A numeric vector of length \code{max(5, ntry)} containing various
+#'   initial values for the shape parameter.
+#'
 #' @importFrom lmomco  lmoms
-#' @export
+#' @import stats
+#' @keywords internal
+#' @noRd
 initk = function(data, model=NULL, ntry=5){
 
   init= rep(NA,max(5,ntry))
