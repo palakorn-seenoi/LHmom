@@ -1,14 +1,36 @@
-# for (eta in 0:4){
-#   cat("eta,par=",eta,lh.pargno(data,eta)$para,"\n")
-# }
 
 # ------------------------------------------------------------
 # Calculating LH-moments estimator for GNO
 # lh.pargno(data,eta=4)
 # ------------------------------------------------------------
-#' LH-moments parameters estimation for GNO distribution
+
+#' Estimate Parameters of the Generalized Normal (GNO) Distribution using LH-moments
 #'
-#' Function to calculate LH-moments parameters estimation for GNO distribution
+#' This function estimates the parameters of the Generalized Normal (GNO)
+#' distribution based on the sample LH-moments. It provides two methods for
+#' estimating the shape parameter: using predefined polynomial approximations
+#' or utilizing numerical optimization.
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#' @param opt A logical value indicating the estimation method for the shape
+#'   parameter. If \code{FALSE} (default), it uses a polynomial approximation.
+#'   If \code{TRUE}, it uses numerical optimization via \code{nleqslv}.
+#' @param ntry An integer specifying the maximum number of initialization
+#'   attempts for the numerical optimization solver when \code{opt = TRUE}. Default is 5.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{type}: The distribution type (\code{"gno"}).
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{xi} for location, \code{alpha} for scale, \code{k} for shape).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{source}: The name of the function (\code{"lh.pargno"}).
+#'   \item \code{ifail}: A numeric indicator of the optimization solver's status
+#'     (0 for success, 5 for failure to converge).
+#' }
+#'
 #' @importFrom lmomco  lmoms
 #' @importFrom lmomco  pargno
 #' @importFrom nleqslv nleqslv
@@ -111,9 +133,29 @@ lh.pargno <- function(data, eta=1, opt=FALSE, ntry=5){
 # ==============================================================
 # Calculate Theoretical LH-moments of GNO
 # ==============================================================
-#' Theoretical LH-moments function of GNO distribution
+
+#' Calculate Theoretical LH-moments for the Generalized Normal (GNO) Distribution
 #'
-#' Function to calculate Theoretical LH-moments for GNO distribution
+#' This function computes the theoretical LH-moments and LH-moment ratios for
+#' the Generalized Normal (GNO) distribution given its parameters. When the
+#' order \code{eta = 0}, it falls back to the ordinary L-moments using the
+#' \code{lmomco} package.
+#'
+#' @param para A numeric vector of three parameters: c(xi, alpha, k), corresponding
+#'   to the location, scale, and shape parameters of the GNO distribution, respectively.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{lambdas}: A named numeric vector of the first four theoretical LH-moments.
+#'   \item \code{ratios}: A named numeric vector of the corresponding LH-moment ratios.
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{type}: The distribution type (\code{"gno"}).
+#' }
+#'
+#' @importFrom lmomco vec2par
+#' @importFrom lmomco lmomgno
 #' @export
 lhmom.gno = function(para=NULL, eta=1){
 
@@ -162,13 +204,25 @@ lhmom.gno = function(para=NULL, eta=1){
   z
 }
 
+
+
 # =============================================================
 # Numerical Integration of Stable I_max function
 # =============================================================
-#' Imax function for GNO distribution
+
+#' Numerical Integration of the Stable I_max Function
 #'
-#' Function to calculate numerical integration (Imax) function for GNO distribution
-#' @export
+#' An internal helper function to compute the numerical integration required
+#' for evaluating the theoretical LH-moments of the Generalized Normal (GNO)
+#' distribution. It uses a transformation to integrate over the bounded
+#' interval from -1 to 1.
+#'
+#' @param n An integer representing the power term in the integrand.
+#' @param theta A numeric shape parameter, typically evaluated as \code{-k}.
+#'
+#' @return A numeric value representing the integration result.
+#' @keywords internal
+#' @noRd
 Imax <- function(n, theta) {
 
   integrand <- function(u) {
