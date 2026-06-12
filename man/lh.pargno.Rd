@@ -2,10 +2,38 @@
 % Please edit documentation in R/lh.pargno.R
 \name{lh.pargno}
 \alias{lh.pargno}
-\title{LH-moments estimation parameters for GNO distribution}
+\title{Estimate Parameters of the Generalized Normal (GNO) Distribution using LH-moments}
 \usage{
-lh.pargno(data, eta = NULL, opt = FALSE, ntry = 5)
+lh.pargno(data, eta = 1, opt = FALSE, ntry = 5)
+}
+\arguments{
+\item{data}{A numeric vector of data values.}
+
+\item{eta}{A non-negative integer (between 0 and 4) representing the order
+of the LH-moments. Default is 1.}
+
+\item{opt}{A logical value indicating the estimation method for the shape
+parameter. If \code{FALSE} (default), it uses a polynomial approximation.
+If \code{TRUE}, it uses numerical optimization via \code{nleqslv}.}
+
+\item{ntry}{An integer specifying the maximum number of initialization
+attempts for the numerical optimization solver when \code{opt = TRUE}. Default is 5.}
+}
+\value{
+A list containing:
+\itemize{
+\item \code{type}: The distribution type (\code{"gno"}).
+\item \code{para}: A named numeric vector containing the estimated parameters
+(\code{xi} for location, \code{alpha} for scale, \code{k} for shape).
+\item \code{eta}: The order of the LH-moments used.
+\item \code{source}: The name of the function (\code{"lh.pargno"}).
+\item \code{ifail}: A numeric indicator of the optimization solver's status
+(0 for success, 5 for failure to converge).
+}
 }
 \description{
-Function to calculate LH-moments estimation parameters for GNO distribution
+This function estimates the parameters of the Generalized Normal (GNO)
+distribution based on the sample LH-moments. It provides two methods for
+estimating the shape parameter: using predefined polynomial approximations
+or utilizing numerical optimization.
 }
