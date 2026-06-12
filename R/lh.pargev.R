@@ -9,9 +9,37 @@
 # Estimating LH-me for gevd, based on Wang's paper(1997)
 # lh.pargev(data, eta=2)
 #------------------------------------------------------------------
-#' LH-moments parameters estimation for GEV distribution
+#' Estimate Parameters of the Generalized Extreme Value (GEV) Distribution using LH-moments
 #'
-#' Function to calculate LH-moments parameters estimation for GEV distribution
+#' This function estimates the parameters of the Generalized Extreme Value (GEV)
+#' distribution based on the sample LH-moments. The estimation methodology
+#' follows Wang (1997). It provides two approaches for estimating the shape
+#' parameter: using Wang's predefined polynomial approximations or utilizing
+#' numerical optimization.
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#' @param opt A logical value indicating the estimation method for the shape
+#'   parameter. If \code{FALSE} (default), it uses Wang's polynomial approximation
+#'   coefficients. If \code{TRUE}, it uses numerical optimization via \code{nleqslv}.
+#' @param ntry An integer specifying the maximum number of initialization
+#'   attempts for the numerical optimization solver when \code{opt = TRUE}. Default is 5.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{type}: The distribution type (\code{"gev"}).
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{xi} for location, \code{alpha} for scale, \code{k} for shape).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{source}: The name of the function (\code{"lh.pargev"}).
+#'   \item \code{ifail}: A numeric indicator of the optimization solver's status
+#'     (0 for success, 5 for failure to converge).
+#' }
+#'
+#' @references Wang, Q. J. (1997). Using higher order L-moments for regional
+#' flood frequency analysis. \emph{Water Resources Research}, 33(12), 2841-2848.
+#'
 #' @importFrom lmomco  lmoms
 #' @importFrom lmomco  pargev
 #' @importFrom nleqslv nleqslv
@@ -98,13 +126,33 @@ lh.pargev = function(data, eta=1, opt=FALSE, ntry=5){
 }
 
 
+
 #-----------------------------------------------------------------
-# Calculate population LH-moments for GEV, from Wang's paper (1997)
+# Calculate Theoretical LH-moments for GEV, from Wang's paper (1997)
 # lhmom.gev(para,eta=2)
 #-----------------------------------------------------------------
-#' Population LH-moments function of GEV distribution
+
+#' Calculate Theoretical LH-moments for the Generalized Extreme Value (GEV) Distribution
 #'
-#' Function to calculate population LH-moments for GEV distribution
+#' This function computes the theoretical LH-moments and LH-moment ratios for
+#' the Generalized Extreme Value (GEV) distribution given its parameters.
+#' The computations are derived based on the formulas provided by Wang (1997).
+#'
+#' @param para A numeric vector of three parameters: c(xi, alpha, k), corresponding
+#'   to the location, scale, and shape parameters of the GEV distribution, respectively.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{lambdas}: A named numeric vector of the first four theoretical LH-moments.
+#'   \item \code{ratios}: A named numeric vector of the corresponding LH-moment ratios.
+#' }
+#'
+#' @references Wang, Q. J. (1997). Using higher order L-moments for regional
+#' flood frequency analysis. \emph{Water Resources Research}, 33(12), 2841-2848.
+#'
 #' @export
 lhmom.gev = function(para, eta=NULL){
 
