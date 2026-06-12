@@ -1,7 +1,7 @@
 
 # for(eta in 0:4){
 #   cat("eta,para k3d=",eta,lh.park3d.kfix(data,eta,
-#                              kfix=-0.)$para,"\n")
+#                                          kfix=-0.)$para,"\n")
 #   cat("eta,para ggd=",eta,lh.parggd(data,eta)$para,"\n","\n")
 # }
 
@@ -9,9 +9,26 @@
 # Compute LHme for ggd
 # lh.parggd(data,eta=2)
 #----------------------------------------------------------
-#' LH-moments parameters estimation for GGD distribution
+
+#' Estimate Parameters of the Generalized Gumbel (GGD) Distribution using LH-moments
 #'
-#' Function to calculate LH-moments parameters estimation for GGD distribution
+#' This function estimates the parameters of the Generalized Gumbel (GGD) distribution
+#' based on the sample LH-moments. It evaluates the GGD as a special case of the
+#' three-parameter Kappa distribution where the shape parameter \code{k} is fixed at 0.
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{mu} for location, \code{sigma} for scale, and \code{h} for shape).
+#'   \item \code{type}: The distribution type (\code{"ggd"}).
+#'   \item \code{source}: The name of the function (\code{"lh.parggd"}).
+#'   \item \code{eta}: The order of the LH-moments used.
+#' }
+#'
 #' @export
 lh.parggd = function(data,eta=1){
 
@@ -29,9 +46,40 @@ lh.parggd = function(data,eta=1){
 # Compute LHme for k3d with kfix
 # lh.park3d.kfix(data,eta=2,kfix=-0.2)
 #---------------------------------------------------------
-#' LH-moments parameters estimation for K3d with kfix distribution
+
+#' Estimate Parameters of the Three-Parameter Kappa Distribution with Fixed k
 #'
-#' Function to calculate LH-moments parameters estimation for K3d with kfix distribution
+#' This function estimates the parameters of the three-parameter Kappa distribution
+#' based on the sample LH-moments, given a fixed value for the shape parameter \code{k}.
+#' It utilizes numerical optimization (\code{nleqslv}) to solve for the second shape
+#' parameter \code{h}. If the numerical solver fails to converge, the function
+#' implements a fallback mechanism by adopting the \code{h} parameter estimated from
+#' the four-parameter Kappa distribution (\code{lh.parkap}).
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#' @param kfix A numeric scalar representing the fixed value for the shape parameter
+#'   \code{k}. Default is 0.
+#' @param hlow A numeric scalar representing the lower bound for the shape parameter
+#'   \code{h}. If \code{NULL}, it defaults to \code{-eta - 1}.
+#' @param ntry An integer specifying the maximum number of initialization
+#'   attempts for the numerical optimization solver. Default is 10.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{mu} for location, \code{sigma} for scale, \code{kfix}, and \code{h} for shape).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{kfix}: The fixed value of the shape parameter \code{k} used in the estimation.
+#'   \item \code{type}: The distribution type (\code{"kap"}).
+#'   \item \code{ifail}: A numeric indicator of the optimization solver's status
+#'     (0 for success, 2 for partial success/limit reached, 5 for failure).
+#'   \item \code{precision}: The final function value (\code{fvec}) from the solver,
+#'     indicating the precision of the root found.
+#'   \item \code{source}: The name of the function (\code{"lh.park3d.kfix"}).
+#' }
+#'
 #' @importFrom nleqslv nleqslv
 #' @export
 lh.park3d.kfix = function(data, eta=1, kfix=0,
