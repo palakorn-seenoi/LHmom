@@ -7,12 +7,41 @@
 # Estimate LHme for K3d with hfix
 # lh.park3d.hfix(data,eta=2,hfix=-0.5)
 #---------------------------------------------------------
-#' LH-moments parameters estimation for K3d with hfix distribution
+
+#' Estimate Parameters of the Three-Parameter Kappa Distribution with Fixed h
 #'
-#' Function to calculate LH-moments parameters estimation for K3d with hfix distribution
+#' This function estimates the parameters of the three-parameter Kappa distribution
+#' based on the sample LH-moments, given a fixed value for the shape parameter \code{h}.
+#' The function utilizes numerical optimization (\code{nleqslv}) to solve for the
+#' shape parameter \code{k}. If the numerical solver fails to converge, the function
+#' implements a fallback mechanism by adopting the \code{k} parameter estimated from
+#' the Generalized Extreme Value (GEV) distribution.
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#' @param hfix A numeric scalar representing the fixed value for the shape parameter
+#'   \code{h}. Default is 0.
+#' @param ntry An integer specifying the maximum number of initialization
+#'   attempts for the numerical optimization solver. Default is 10.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{mu} for location, \code{sigma} for scale, \code{k} for shape, and \code{hfix}).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{hfix}: The fixed value of the shape parameter \code{h} used in the estimation.
+#'   \item \code{type}: The distribution type (\code{"kap"}).
+#'   \item \code{ifail}: A numeric indicator of the optimization solver's status
+#'     (0 for success, 2 for partial success/limit reached, 5 for failure).
+#'   \item \code{precision}: The final function value (\code{fvec}) from the solver,
+#'     indicating the precision of the root found.
+#'   \item \code{source}: The name of the function (\code{"lh.park3d.hfix"}).
+#' }
+#'
 #' @importFrom nleqslv nleqslv
 #' @export
-lh.park3d.hfix = function(data, eta=1, hfix=NULL,
+lh.park3d.hfix = function(data, eta=1, hfix=0,
                           ntry=10){
 
   z=list()
