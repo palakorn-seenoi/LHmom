@@ -3,9 +3,32 @@
 # Estimating LH-me for glo, using Meshgi and Khalili (2009) SERRA
 # lh.parglo(data, eta=2)
 #------------------------------------------------------------------
-#' LH-moments parameters estimation for GLO distribution
+
+#' Estimate Parameters of the Generalized Logistic (GLO) Distribution using LH-moments
 #'
-#' Function to calculate LH-moments parameters estimation for GLO distribution
+#' This function estimates the parameters of the Generalized Logistic (GLO)
+#' distribution based on the sample LH-moments. The analytical formulas for
+#' the parameter estimation are derived based on the methodology presented
+#' by Meshgi and Khalili (2009).
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{mu} for location, \code{sigma} for scale, \code{k} for shape).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{type}: The distribution type (\code{"glo"}).
+#'   \item \code{ifail}: A numeric indicator of success (0 for success).
+#'   \item \code{source}: The name of the function (\code{"lh.parglo"}).
+#' }
+#'
+#' @references Meshgi, A., & Khalili, D. (2009). Comprehensive evaluation of
+#' regional flood frequency analysis by L- and LH-moments. \emph{Stochastic
+#' Environmental Research and Risk Assessment (SERRA)}, 23(1), 137-152.
+#'
 #' @export
 lh.parglo = function(data,eta=1){
 
@@ -35,13 +58,37 @@ lh.parglo = function(data,eta=1){
 }
 
 
+
 #------------------------------------------------------------------
 # Estimating LH-me for gpa, using Meshgi and Khalili (2009) SERRA
 # lh.pargpa(data, eta=2)
 #------------------------------------------------------------------
-#' LH-moments parameters estimation for GPA distribution
+
+#' Estimate Parameters of the Generalized Pareto (GPA) Distribution using LH-moments
 #'
-#' Function to calculate LH-moments parameters estimation for GPA distribution
+#' This function estimates the parameters of the Generalized Pareto (GPA)
+#' distribution based on the sample LH-moments. The analytical formulas for
+#' the parameter estimation are derived based on the methodology presented
+#' by Meshgi and Khalili (2009).
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{mu} for location, \code{sigma} for scale, \code{k} for shape).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{type}: The distribution type (\code{"gpa"}).
+#'   \item \code{ifail}: A numeric indicator of success (0 for success).
+#'   \item \code{source}: The name of the function (\code{"lh.pargpa"}).
+#' }
+#'
+#' @references Meshgi, A., & Khalili, D. (2009). Comprehensive evaluation of
+#' regional flood frequency analysis by L- and LH-moments. \emph{Stochastic
+#' Environmental Research and Risk Assessment (SERRA)}, 23(1), 137-152.
+#'
 #' @export
 lh.pargpa= function(data,eta=1){
 
