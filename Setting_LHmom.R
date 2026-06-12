@@ -250,3 +250,24 @@ devtools::build_manual() # PDF
 usethis::use_pkgdown()
 
 pkgdown::build_site() # ระบบจะสร้างโฟลเดอร์ใหม่ขึ้นมาในโปรเจกต์ชื่อว่า docs/ ซึ่งข้างในจะเต็มไปด้วยไฟล์หน้าเว็บ .html
+devtools::build_manual(path = ".")
+devtools::build_manual(path = "C:/")
+
+# ติดตั้งแพ็กเกจตัวจัดการ
+install.packages("tinytex")
+# สั่งติดตั้ง TinyTeX (ตัวนี้จะไปจัดการโหลด Library ที่จำเป็นให้เองอัตโนมัติ)
+tinytex::install_tinytex()
+# สั่งให้ R ใช้ tinytex สร้าง PDF แทน MiKTeX
+tinytex::latexmk("Rd2.tex", engine = "pdflatex")
+
+devtools::build_manual(path = ".")
+
+# ต้องติดตั้งแพ็กเกจเพิ่มถ้ายังไม่มี
+install.packages("pagedown")
+
+# สร้างคู่มือแบบ PDF จากหน้าเว็บคู่มือที่คุณเพิ่งทำเสร็จ
+pagedown::chrome_print("https://palakorn-seenoi.github.io/LHmom/", output = "LHmom_Manual_Official.pdf")
+
+
+
+
