@@ -4,6 +4,30 @@
 # wang.test.lhgev(data)
 #----------------------------------------------------------------
 
+#' Wang's Goodness-of-Fit Test for the Generalized Extreme Value (GEV) Distribution
+#'
+#' This function performs a Goodness-of-Fit (GOF) test for the Generalized Extreme
+#' Value (GEV) distribution using LH-moments, based on the methodology proposed
+#' by Wang (1998). It calculates a Z-test statistic by comparing the sample
+#' LH-kurtosis with the theoretical LH-kurtosis. The test is evaluated across
+#' LH-moment orders (\code{eta}) from 0 to 4.
+#'
+#' @param data A numeric vector of data values.
+#'
+#' @return A data frame containing the GOF test results for each \code{eta} value
+#'   (from 0 to 4), with the following columns:
+#' \itemize{
+#'   \item \code{eta}: The order of the LH-moments.
+#'   \item \code{z.test}: The calculated Z-statistic for the GOF test.
+#'   \item \code{cond.sigma}: The conditional standard deviation of the sample LH-kurtosis.
+#'   \item \code{p.value}: The two-sided p-value corresponding to the Z-test statistic.
+#' }
+#'
+#' @references Wang, Q. J. (1998). Approximate goodness-of-fit tests of fitted
+#' generalized extreme value distributions using LH moments. \emph{Water Resources
+#' Research}, 34(12), 3497-3502.
+#'
+#' @export
 wang.test.lhgev =function(data){
 
   # tau = population L-moments
