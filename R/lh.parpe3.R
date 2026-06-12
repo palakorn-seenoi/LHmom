@@ -7,9 +7,34 @@
 # Estimating LH-me for pe3
 # lh.parpe3(data, eta=2)
 #------------------------------------------------------------------
-#' LH-moments parameters estimation for PE3 distribution
+#' Estimate Parameters of the Pearson Type III (PE3) Distribution using LH-moments
 #'
-#' Function to calculate LH-moments parameters estimation for PE3 distribution
+#' This function estimates the parameters of the Pearson Type III (PE3) distribution
+#' based on the sample LH-moments. It provides two estimation methods: using
+#' predefined polynomial coefficients (Log-Log Split Degree 5 based on sample LH-skewness)
+#' or numerical optimization via \code{nleqslv}. If the numerical solver fails to
+#' converge, the function falls back to the ordinary L-moments estimation (\code{eta = 0}).
+#'
+#' @param data A numeric vector of data values.
+#' @param eta A non-negative integer (between 0 and 4) representing the order
+#'   of the LH-moments. Default is 1.
+#' @param opt A logical value. If \code{FALSE} (default), it estimates parameters
+#'   using polynomial approximations. If \code{TRUE}, it utilizes numerical optimization.
+#' @param ntry An integer specifying the maximum number of initialization attempts
+#'   for the numerical optimization solver when \code{opt = TRUE}. Default is 10.
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{para}: A named numeric vector containing the estimated parameters
+#'     (\code{mu} for location, \code{sigma} for scale, \code{gamma} for shape).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{type}: The distribution type (\code{"pe3"}).
+#'   \item \code{ifail}: A numeric indicator of the optimization solver's status
+#'     (0 for success, 2 for partial success, 5 for failure).
+#'   \item \code{precision}: The final function value (\code{fvec}) from the solver.
+#'   \item \code{source}: The name of the function (\code{"lh.parpe3"}).
+#' }
+#'
 #' @importFrom lmomco  lmoms
 #' @importFrom lmomco  parpe3
 #' @importFrom nleqslv nleqslv
@@ -74,6 +99,9 @@ lh.parpe3 = function(data, eta=1, opt=FALSE, ntry=10){
       alpha <- exp(ln_alpha)
     } # end if at3
 
+    ifail= 0 # new add
+    fvec = 1e-7 # new add-2
+
   }else if(opt==TRUE){
 
     init= abs(initk(data, model="pe3",ntry=ntry))
@@ -106,7 +134,7 @@ lh.parpe3 = function(data, eta=1, opt=FALSE, ntry=10){
                                      allowSingular = TRUE),
                       t3=t3, eta=eta)
 
-      if (abs(mysol$fvec) < ftol| mysol$termcd ==1){
+      if (abs(mysol$fvec) < ftol | mysol$termcd ==1){
         ifail = 0
         alpha = mysol$x
         fvec = mysol$fvec
@@ -116,6 +144,8 @@ lh.parpe3 = function(data, eta=1, opt=FALSE, ntry=10){
         itry = itry + 1
         ftol= itry*ftolz
         xtol= itry*xtolz
+        ifail=5  # new add
+        fvec = 10^6  # new add-2
 
         if(mysol$termcd==2){
           ifail=2
@@ -181,6 +211,7 @@ lh.parpe3 = function(data, eta=1, opt=FALSE, ntry=10){
 }
 
 
+
 # ==============================================================================
 # Function: lhmom.pe3
 # Description: Calculates Theoretical LH-moments (L1-L4) and LH-moment ratios (Tau2-Tau4)
@@ -189,9 +220,28 @@ lh.parpe3 = function(data, eta=1, opt=FALSE, ntry=10){
 #   para: A vector of length 3 c(xi, alpha, beta) OR a 'vec2par' object from lmomco.
 #   eta:  The level of LH-moments (eta = 0 corresponds to standard L-moments).
 # ==============================================================================
-#' Theoretical LH-moments function of PE3 distribution
+
+#' Calculate Theoretical LH-moments for the Pearson Type III (PE3) Distribution
 #'
-#' Function to calculate Theoretical LH-moments for PE3 distribution
+#' This function computes the theoretical LH-moments and LH-moment ratios for the
+#' Pearson Type III (PE3) distribution. It supports parameter inputs either as a
+#' \code{vec2par} object from the \code{lmomco} package or as a standard numeric vector.
+#'
+#' @param para A list containing a \code{vec2par} object (with \code{mu, sigma, gamma})
+#'   OR a numeric vector of length 3 \code{c(xi, alpha, beta)}.
+#' @param eta A non-negative integer representing the order of the LH-moments.
+#'   Default is 0 (which corresponds to the standard L-moments).
+#'
+#' @return A list containing:
+#' \itemize{
+#'   \item \code{lambdas}: A named numeric vector of the first four theoretical LH-moments.
+#'   \item \code{ratios}: A named numeric vector of the corresponding LH-moment ratios.
+#'   \item \code{trim}: The trim level (fixed at 0 for LH-moments compatibility).
+#'   \item \code{type}: The distribution type (\code{"pe3"}).
+#'   \item \code{eta}: The order of the LH-moments used.
+#'   \item \code{source}: The name of the function (\code{"lhmom.pe3"}).
+#' }
+#'
 #' @importFrom lmomco vec2par
 #' @export
 lhmom.pe3 <- function(para, eta = 0) {
@@ -203,10 +253,10 @@ lhmom.pe3 <- function(para, eta = 0) {
 
     mu    <- para$para[1]
     sigma <- para$para[2]
-    gam   <- para$para[3]
+    gam <- para$para[3]
 
     alpha <- 4 / (gam^2)
-    be    <- sigma / sqrt(alpha)
+    be  <- sigma / sqrt(alpha)
     xi    <- mu - (alpha * be)
 
   } else if (is.vector(para) && length(para) == 3) {
@@ -214,7 +264,7 @@ lhmom.pe3 <- function(para, eta = 0) {
 
     xi    <- para[1]
     alpha <- para[2]
-    be    <- para[3]
+    be  <- para[3]
 
   } else {
     stop("Invalid input: 'para' must be a vec2par object (pe3) or a vector c(xi, alpha, beta)")
@@ -284,19 +334,24 @@ lhmom.pe3 <- function(para, eta = 0) {
 
   return(z)
 }
-# # parameters >>>> xi alpha beta
-#
-# alpha <- 4 / (gamma^2)
-# beta  <- sigma / sqrt(alpha)
-# xi    <- mu - (alpha * beta)
+
 
 
 
 #-------------------------------------------------
-#' Omega function for PE3 distribution
+# Omega function for PE3 distribution
+#-------------------------------------------------
+#' Calculate the Omega Function for the PE3 Distribution
 #'
-#' Function to calculate Omega for PE3 distribution
-#' @export
+#' An internal helper function to calculate the generalized Probability Weighted
+#' Moments (PWM) component, Omega, for the Pearson Type III (PE3) distribution
+#' via numerical integration.
+#'
+#' @param alpha A numeric shape parameter for the Gamma distribution component.
+#' @param S A numeric value representing the moment order step (\code{eta + k}). Default is 1.
+#'
+#' @return A numeric value resulting from the numerical integration.
+#' @keywords internal
 cal_Omega <- function(alpha=NULL, S=1) {
 
   integrand <- function(t) {
@@ -332,10 +387,19 @@ cal_Omega <- function(alpha=NULL, S=1) {
 
 
 #----------------------------------------------------------
-#' Lamdbda function for PE3 distribution
+# Lamdbda function for PE3 distribution
+#----------------------------------------------------------
+#' Calculate the Lambda Function for the PE3 Distribution
 #'
-#' Function to calculate Lamdbda for PE3 distribution
-#' @export
+#' An internal helper function to compute the weighted sum of the Omega function
+#' values, calculating the specific Lambda components for the PE3 parameter estimation.
+#'
+#' @param alpha A numeric shape parameter.
+#' @param eta A non-negative integer representing the order of the LH-moments. Default is 1.
+#' @param r An integer representing the moment order index. Default is 1.
+#'
+#' @return A numeric value representing the Lambda component.
+#' @keywords internal
 cal_Lam <- function(alpha=NULL, eta=1, r=1){
 
   Lam_val <- 0
