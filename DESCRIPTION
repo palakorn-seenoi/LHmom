@@ -25,8 +25,8 @@ Config/testthat/edition: 3
 URL: https://palakorn-seenoi.github.io/LHmom/
 VignetteBuilder: knitr
 Authors@R: c(
-    person("Palakorn", "Seenoi", email = "palakorns@kku.ac.th", role = c("aut", "cre")),
-    person("Yire", "Shin", role = "aut"),
-    person("Piyapatr", "Busababodhin", email = "piyapatr.b@msu.ac.th", role = "aut"),
-    person("Jeong-Soo", "Park", role = "aut")
+    person(given = "Palakorn",  family = "Seenoi",       email = "palakorns@kku.ac.th",   role = c("aut", "cre")),
+    person(given = "Yire",      family = "Shin",         email = "shinyire@daum.net",     role = "aut"),
+    person(given = "Piyapatr",  family = "Busababodhin", email = "piyapatr.b@msu.ac.th",  role = "aut"),
+    person(given = "Jeong-Soo", family = "Park",         email = "jspark@jnu.ac.kr",      role = "aut")
   )
