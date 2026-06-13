@@ -15,12 +15,12 @@ of the LH-moments. Default is 1.}
 \value{
 A list containing:
 \itemize{
+\item \code{type}: The distribution type (\code{"gpa"}).
 \item \code{para}: A named numeric vector containing the estimated parameters
 (\code{mu} for location, \code{sigma} for scale, \code{k} for shape).
 \item \code{eta}: The order of the LH-moments used.
-\item \code{type}: The distribution type (\code{"gpa"}).
-\item \code{ifail}: A numeric indicator of success (0 for success).
 \item \code{source}: The name of the function (\code{"lh.pargpa"}).
+\item \code{ifail}: A numeric indicator of success (0 for success).
 }
 }
 \description{
