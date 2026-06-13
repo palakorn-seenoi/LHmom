@@ -65,12 +65,12 @@ A list containing:
 
 - `eta`: The order of the LH-moments used.
 
+- `source`: The name of the function (`"lh.parkap"`).
+
 - `ifail`: A numeric indicator of the optimization solver's status (0
   for success, 1 for fallback success, 5 for failure).
 
 - `precision`: The final function values from the solver.
-
-- `source`: The name of the function (`"lh.parkap"`).
 
 - `ifailtext`: A descriptive message regarding the estimation success or
   failure.
