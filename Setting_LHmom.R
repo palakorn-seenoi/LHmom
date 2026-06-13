@@ -91,7 +91,8 @@ devtools::build(binary=TRUE)
 library(LHmom)
 data(package = "LHmom")
 ls("package:LHmom")
-data("rain_khonkaen")
+data("khonkaen")
+khonkaen
 
 help(package = "LHmom")
 ?lhmom.k3d.hfix
@@ -250,6 +251,7 @@ devtools::build_manual() # PDF
 usethis::use_pkgdown()
 
 pkgdown::build_site() # ระบบจะสร้างโฟลเดอร์ใหม่ขึ้นมาในโปรเจกต์ชื่อว่า docs/ ซึ่งข้างในจะเต็มไปด้วยไฟล์หน้าเว็บ .html
+
 devtools::build_manual(path = ".")
 devtools::build_manual(path = "C:/")
 
