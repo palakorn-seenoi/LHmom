@@ -25,14 +25,14 @@
 #'
 #' @return A list containing:
 #' \itemize{
+#'   \item \code{type}: The distribution type (\code{"pe3"}).
 #'   \item \code{para}: A named numeric vector containing the estimated parameters
 #'     (\code{mu} for location, \code{sigma} for scale, \code{gamma} for shape).
 #'   \item \code{eta}: The order of the LH-moments used.
-#'   \item \code{type}: The distribution type (\code{"pe3"}).
+#'   \item \code{source}: The name of the function (\code{"lh.parpe3"}).
 #'   \item \code{ifail}: A numeric indicator of the optimization solver's status
 #'     (0 for success, 2 for partial success, 5 for failure).
 #'   \item \code{precision}: The final function value (\code{fvec}) from the solver.
-#'   \item \code{source}: The name of the function (\code{"lh.parpe3"}).
 #' }
 #'
 #' @importFrom lmomco  lmoms
@@ -205,9 +205,12 @@ lh.parpe3 = function(data, eta=1, opt=FALSE, ntry=10){
   para=c(mu, sigma, gam)
   names(para) <- c("mu", "sigma", "gamma")
 
-  return(list(para = para, eta=eta,
-              type="pe3", ifail=ifail,
-              precision=fvec, source="lh.parpe3"))
+  return(list(type="pe3",
+              para = para,
+              eta=eta,
+              source="lh.parpe3",
+              ifail=ifail,
+              precision=fvec))
 }
 
 
