@@ -271,5 +271,10 @@ install.packages("pagedown")
 pagedown::chrome_print("https://palakorn-seenoi.github.io/LHmom/", output = "LHmom_Manual_Official.pdf")
 
 
+devtools::document()
+devtools::build_manual(path = getwd())
 
 
+
+usethis::use_vignette("LHmom-examples", "Illustrative Examples of LHmom")
+pkgdown::build_site()

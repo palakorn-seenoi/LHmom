@@ -81,3 +81,9 @@ in R.
   : Wang's Goodness-of-Fit Test for the Generalized Extreme Value (GEV)
   Distribution
 
+# Articles
+
+### All vignettes
+
+- [Illustrative Examples of
+  LHmom](https://palakorn-seenoi.github.io/LHmom/articles/LHmom-examples.md):

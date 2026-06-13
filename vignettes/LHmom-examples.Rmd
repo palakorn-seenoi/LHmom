@@ -1,0 +1,66 @@
+---
+title: "Illustrative Examples of LHmom"
+author: "Palakorn Seenoi, Yire Shin, Jeong-Soo Park, Piyapatr Busababodhin"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Illustrative Examples of LHmom}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+This vignette demonstrates the core functionalities of the ``LHmom`` package using the built-in ``bangkok`` dataset. This dataset contains the annual maximum series of daily rainfall in Bangkok, Thailand, from 1951 to 2025.
+
+We will walk through the process of calculating sample LH-moments, estimating parameters for the Generalized Extreme Value (GEV) distribution, and evaluating the model fit.
+
+## 1. Data Preparation
+First, load the package and the dataset:
+```{r}
+library(LHmom)
+data(bangkok)
+
+# View the first few rows
+head(bangkok)
+```
+## 2. LH estimation for GEV distribution
+Users can compute the sample LH-moments for a given order $\eta$ and subsequently estimate the parameters for various distributions. The following example demonstrates fitting the GEV distribution using the first order of LH-moments ($\eta = 1$).
+
+### Calculating Sample LH-moments
+```{r}
+# Calculate sample LH-moments at eta = 1
+sample_lh <- lhmoms(bangkok$rainfall, eta = 1)
+print(sample_lh$lambdas)
+```
+### Parameter Estimation
+Next, we estimate the GEV parameters using the calculated sample LH-moments:
+```{r}
+# Estimate GEV parameters (eta = 1)
+fit_gev <- lh.pargev(bangkok$rainfall, eta = 1)
+print(fit_gev$para)
+```
+### Verifying Numerical Consistency
+To verify the estimation algorithm, we can calculate the theoretical LH-moments from our newly fitted parameters:
+```{r}
+# Calculate theoretical LH-moments from the fitted parameters
+theo_lh <- lhmom.gev(fit_gev$para, eta = 1)
+print(theo_lh$lambdas)
+```
+Notice the numerical consistency: because the GEV is a three-parameter distribution, the estimation algorithm successfully equates the first three sample LH-moments with their theoretical counterparts.
+
+## 3. Wang's Goodness-of-Fit Test
+A crucial aspect of extreme value analysis is model validation. The ``wang.test.lhgev()`` function evaluates whether the GEV distribution provides a suitable fit to the data across different LH-moment orders ($\eta$) by calculating a Z-statistic based on the difference between the sample and theoretical LH-kurtosis.
+```{r}
+# Perform Wang's goodness-of-fit test
+gof_test <- wang.test.lhgev(bangkok$rainfall)
+print(gof_test)
+```
+### Interpretation:
+The results demonstrate a satisfactory fit across all $\eta$ values, as all $p$-values significantly exceed the 0.05 significance level. Notably, at $\eta = 3$, the absolute Z-statistic reaches its minimum, and the $p$-value approaches unity. This indicates that employing a higher-order LH-moment ($\eta = 3$) captures the upper-tail distributional shape of the annual maximum rainfall exceptionally well compared to ordinary L-moments ($\eta = 0$).
