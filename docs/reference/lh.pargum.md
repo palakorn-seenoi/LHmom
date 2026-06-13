@@ -27,13 +27,13 @@ lh.pargum(data, eta = 1)
 
 A list containing:
 
-- `model`: The specific model name (`"gum"`).
+- `type`: The overarching distribution family (`"gev"`).
 
 - `para`: A named numeric vector containing the estimated parameters
   (`xi` for location, `alpha` for scale, and `k` = 0 for shape).
 
-- `type`: The overarching distribution family (`"gev"`).
-
 - `eta`: The order of the LH-moments used.
 
 - `source`: The name of the function (`"lh.pargum"`).
+
+- `model`: The specific model name (`"gum"`).
