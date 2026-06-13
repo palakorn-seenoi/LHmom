@@ -27,16 +27,17 @@
 #'
 #' @return A list containing:
 #' \itemize{
+#'   \item \code{type}: The distribution type (\code{"kap"}).
 #'   \item \code{para}: A named numeric vector containing the estimated parameters
 #'     (\code{mu} for location, \code{sigma} for scale, \code{k} for shape, and \code{hfix}).
 #'   \item \code{eta}: The order of the LH-moments used.
-#'   \item \code{hfix}: The fixed value of the shape parameter \code{h} used in the estimation.
-#'   \item \code{type}: The distribution type (\code{"kap"}).
+#'   \item \code{source}: The name of the function (\code{"lh.park3d.hfix"}).
 #'   \item \code{ifail}: A numeric indicator of the optimization solver's status
 #'     (0 for success, 2 for partial success/limit reached, 5 for failure).
+#'   \item \code{hfix}: The fixed value of the shape parameter \code{h} used in the estimation.
 #'   \item \code{precision}: The final function value (\code{fvec}) from the solver,
 #'     indicating the precision of the root found.
-#'   \item \code{source}: The name of the function (\code{"lh.park3d.hfix"}).
+
 #' }
 #'
 #' @importFrom nleqslv nleqslv
@@ -167,8 +168,11 @@ lh.park3d.hfix = function(data, eta=1, hfix=0,
   para=c(mu, sigma, k, h)
   names(para)= c("mu", "sigma", "k", "hfix")
 
-  return(list(para = para, eta=eta,
-              hfix=hfix, type="kap",
-              ifail=ifail, precision=fvec,
-              source="lh.park3d.hfix"))
+  return(list(type="kap",
+              para = para,
+              eta=eta,
+              source="lh.park3d.hfix",
+              ifail=ifail,
+              hfix=hfix,
+              precision=fvec ))
 }
