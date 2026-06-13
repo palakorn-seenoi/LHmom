@@ -40,7 +40,6 @@
 #'   \item \code{ifail}: A numeric indicator of the optimization solver's status
 #'     (0 for success, 1 for fallback success, 5 for failure).
 #'   \item \code{precision}: The final function values from the solver.
-
 #'   \item \code{ifailtext}: A descriptive message regarding the estimation success or failure.
 #' }
 #'
