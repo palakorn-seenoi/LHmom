@@ -39,20 +39,20 @@ lh.park3d.hfix(data, eta = 1, hfix = 0, ntry = 10)
 
 A list containing:
 
+- `type`: The distribution type (`"kap"`).
+
 - `para`: A named numeric vector containing the estimated parameters
   (`mu` for location, `sigma` for scale, `k` for shape, and `hfix`).
 
 - `eta`: The order of the LH-moments used.
 
-- `hfix`: The fixed value of the shape parameter `h` used in the
-  estimation.
-
-- `type`: The distribution type (`"kap"`).
+- `source`: The name of the function (`"lh.park3d.hfix"`).
 
 - `ifail`: A numeric indicator of the optimization solver's status (0
   for success, 2 for partial success/limit reached, 5 for failure).
 
+- `hfix`: The fixed value of the shape parameter `h` used in the
+  estimation.
+
 - `precision`: The final function value (`fvec`) from the solver,
   indicating the precision of the root found.
-
-- `source`: The name of the function (`"lh.park3d.hfix"`).
