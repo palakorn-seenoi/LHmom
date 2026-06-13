@@ -17,12 +17,12 @@
 #'
 #' @return A list containing:
 #' \itemize{
-#'   \item \code{model}: The specific model name (\code{"gum"}).
+#'   \item \code{type}: The overarching distribution family (\code{"gev"}).
 #'   \item \code{para}: A named numeric vector containing the estimated parameters
 #'     (\code{xi} for location, \code{alpha} for scale, and \code{k} = 0 for shape).
-#'   \item \code{type}: The overarching distribution family (\code{"gev"}).
 #'   \item \code{eta}: The order of the LH-moments used.
 #'   \item \code{source}: The name of the function (\code{"lh.pargum"}).
+#'   \item \code{model}: The specific model name (\code{"gum"}).
 #' }
 #'
 #' @export
@@ -36,7 +36,9 @@ lh.pargum = function(data,eta=1){
   para=c(mu,sigma,0)
   names(para) <- c("xi","alpha","k")
 
-  return( list(model="gum", para=para, type="gev",
-               eta=eta, source="lh.pargum"
-  ) )
+  return( list(type="gev",
+               para=para,
+               eta=eta,
+               source="lh.pargum",
+               model="gum"  ) )
 }
