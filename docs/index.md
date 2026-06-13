@@ -1,4 +1,4 @@
-# LHmom: Parameter Estimation and Calculations of Linear Higher-Order Moments
+# **`LHmom`**: Parameter Estimation and Calculations of Linear Higher-Order Moments
 
 The **`LHmom`** package computes sample and theoretical Linear
 Higher-Order Moments (LH-moments) and implements parameter estimation
