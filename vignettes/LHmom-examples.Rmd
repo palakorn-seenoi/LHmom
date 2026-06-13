@@ -1,6 +1,6 @@
 ---
 title: "Illustrative Examples of LHmom"
-author: "Palakorn Seenoi, Yire Shin, Jeong-Soo Park, Piyapatr Busababodhin"
+author: "Palakorn Seenoi, Yire Shin, Piyapatr Busababodhin, Jeong-Soo Park"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
