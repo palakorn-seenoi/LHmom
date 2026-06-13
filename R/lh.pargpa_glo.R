@@ -17,12 +17,13 @@
 #'
 #' @return A list containing:
 #' \itemize{
+#'   \item \code{type}: The distribution type (\code{"glo"}).
 #'   \item \code{para}: A named numeric vector containing the estimated parameters
 #'     (\code{mu} for location, \code{sigma} for scale, \code{k} for shape).
 #'   \item \code{eta}: The order of the LH-moments used.
-#'   \item \code{type}: The distribution type (\code{"glo"}).
-#'   \item \code{ifail}: A numeric indicator of success (0 for success).
 #'   \item \code{source}: The name of the function (\code{"lh.parglo"}).
+#'   \item \code{ifail}: A numeric indicator of success (0 for success).
+
 #' }
 #'
 #' @references Meshgi, A., & Khalili, D. (2009). Comprehensive evaluation of
@@ -53,8 +54,11 @@ lh.parglo = function(data,eta=1){
   para=c(mu, sigma, k)
   names(para) <- c("mu","sigma","k")
 
-  return(list(para = para, eta=eta,
-              type="glo", ifail=0, source="lh.parglo"))
+  return(list(type="glo",
+              para = para,
+              eta=eta,
+              source="lh.parglo",
+              ifail=0))
 }
 
 
@@ -77,12 +81,13 @@ lh.parglo = function(data,eta=1){
 #'
 #' @return A list containing:
 #' \itemize{
+#'   \item \code{type}: The distribution type (\code{"gpa"}).
 #'   \item \code{para}: A named numeric vector containing the estimated parameters
 #'     (\code{mu} for location, \code{sigma} for scale, \code{k} for shape).
 #'   \item \code{eta}: The order of the LH-moments used.
-#'   \item \code{type}: The distribution type (\code{"gpa"}).
-#'   \item \code{ifail}: A numeric indicator of success (0 for success).
 #'   \item \code{source}: The name of the function (\code{"lh.pargpa"}).
+#'   \item \code{ifail}: A numeric indicator of success (0 for success).
+
 #' }
 #'
 #' @references Meshgi, A., & Khalili, D. (2009). Comprehensive evaluation of
@@ -112,8 +117,11 @@ lh.pargpa= function(data,eta=1){
   para=c(mu, sigma, k)
   names(para) <- c("mu","sigma","k")
 
-  return(list(para = para, eta=eta,
-              type="gpa",ifail=0,source="lh.pargpa"))
+  return(list(type="gpa",
+              para = para,
+              eta=eta,
+              source="lh.pargpa",
+              ifail=0))
 }
 
 
