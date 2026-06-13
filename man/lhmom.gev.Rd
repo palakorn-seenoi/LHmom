@@ -16,9 +16,9 @@ of the LH-moments.}
 \value{
 A list containing:
 \itemize{
-\item \code{eta}: The order of the LH-moments used.
 \item \code{lambdas}: A named numeric vector of the first four theoretical LH-moments.
 \item \code{ratios}: A named numeric vector of the corresponding LH-moment ratios.
+\item \code{eta}: The order of the LH-moments used.
 }
 }
 \description{
