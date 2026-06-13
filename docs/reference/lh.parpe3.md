@@ -40,16 +40,16 @@ lh.parpe3(data, eta = 1, opt = FALSE, ntry = 10)
 
 A list containing:
 
+- `type`: The distribution type (`"pe3"`).
+
 - `para`: A named numeric vector containing the estimated parameters
   (`mu` for location, `sigma` for scale, `gamma` for shape).
 
 - `eta`: The order of the LH-moments used.
 
-- `type`: The distribution type (`"pe3"`).
+- `source`: The name of the function (`"lh.parpe3"`).
 
 - `ifail`: A numeric indicator of the optimization solver's status (0
   for success, 2 for partial success, 5 for failure).
 
 - `precision`: The final function value (`fvec`) from the solver.
-
-- `source`: The name of the function (`"lh.parpe3"`).
