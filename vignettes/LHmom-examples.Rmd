@@ -21,8 +21,15 @@ This vignette demonstrates the core functionalities of the ``LHmom`` package usi
 
 We will walk through the process of calculating sample LH-moments, estimating parameters for the Generalized Extreme Value (GEV) distribution, and evaluating the model fit.
 
-## 1. Data Preparation
-First, load the package and the dataset:
+## 1. Installation
+You can install the development version of LHmom from GitHub with:
+```{r, eval = FALSE}
+install.packages("devtools")
+devtools::install_github("palakorn-seenoi/LHmom")
+```
+
+## 2. Data Preparation
+Load the package and the dataset:
 ```{r}
 library(LHmom)
 data(bangkok)
@@ -30,7 +37,7 @@ data(bangkok)
 # View the first few rows
 head(bangkok)
 ```
-## 2. LH estimation for GEV distribution
+## 3. LH estimation for GEV distribution
 Users can compute the sample LH-moments for a given order $\eta$ and subsequently estimate the parameters for various distributions. The following example demonstrates fitting the GEV distribution using the first order of LH-moments ($\eta = 1$).
 
 ### Calculating Sample LH-moments
@@ -55,7 +62,7 @@ print(theo_lh$lambdas)
 ```
 Notice the numerical consistency: because the GEV is a three-parameter distribution, the estimation algorithm successfully equates the first three sample LH-moments with their theoretical counterparts.
 
-## 3. Wang's Goodness-of-Fit Test
+## 4. Wang's Goodness-of-Fit Test
 A crucial aspect of extreme value analysis is model validation. The ``wang.test.lhgev()`` function evaluates whether the GEV distribution provides a suitable fit to the data across different LH-moment orders ($\eta$) by calculating a Z-statistic based on the difference between the sample and theoretical LH-kurtosis.
 ```{r}
 # Perform Wang's goodness-of-fit test
