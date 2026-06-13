@@ -2,6 +2,10 @@
 
 ## All functions
 
+- [`bangkok`](https://palakorn-seenoi.github.io/LHmom/reference/bangkok.md)
+  : Annual Maximum Daily Rainfall for Bangkok, Thailand
+- [`khonkaen`](https://palakorn-seenoi.github.io/LHmom/reference/khonkaen.md)
+  : Annual Maximum Daily Rainfall for Khon Kaen, Thailand
 - [`lh.pargev()`](https://palakorn-seenoi.github.io/LHmom/reference/lh.pargev.md)
   : Estimate Parameters of the Generalized Extreme Value (GEV)
   Distribution using LH-moments
@@ -60,18 +64,8 @@
   Distribution
 - [`lhmoms()`](https://palakorn-seenoi.github.io/LHmom/reference/lhmoms.md)
   : Calculate Sample LH-moments
-- [`rain_bangkok`](https://palakorn-seenoi.github.io/LHmom/reference/rain_bangkok.md)
-  : Annual Maximum Daily Rainfall for Bangkok
-- [`rain_khonkaen`](https://palakorn-seenoi.github.io/LHmom/reference/rain_khonkaen.md)
-  : Annual Maximum Daily Rainfall for Khon Kaen
-- [`rain_mahasarakham`](https://palakorn-seenoi.github.io/LHmom/reference/rain_mahasarakham.md)
-  : Annual Maximum Daily Rainfall for Maha Sarakham
-- [`rain_thaphra`](https://palakorn-seenoi.github.io/LHmom/reference/rain_thaphra.md)
-  : Annual Maximum Daily Rainfall for Tha Phra, Khon Kaen
-- [`temp_khonkaen`](https://palakorn-seenoi.github.io/LHmom/reference/temp_khonkaen.md)
-  : Annual Maximum Daily Temperature for Khon Kaen
-- [`temp_mahasarakham`](https://palakorn-seenoi.github.io/LHmom/reference/temp_mahasarakham.md)
-  : Annual Maximum Daily Temperature for Maha Sarakham
+- [`sarakham`](https://palakorn-seenoi.github.io/LHmom/reference/sarakham.md)
+  : Annual Maximum Daily Temperature for Maha Sarakham, Thailand
 - [`wang.test.lhgev()`](https://palakorn-seenoi.github.io/LHmom/reference/wang.test.lhgev.md)
   : Wang's Goodness-of-Fit Test for the Generalized Extreme Value (GEV)
   Distribution
