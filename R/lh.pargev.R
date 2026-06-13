@@ -121,8 +121,11 @@ lh.pargev = function(data, eta=1, opt=FALSE, ntry=5){
   para= c(xi, alpha, k)
   names(para) <- c("xi","alpha","k")
 
-  return(list(type = "gev", para = para, eta=eta,
-              source="lh.pargev", ifail=ifail))
+  return(list(type = "gev",
+              para = para,
+              eta=eta,
+              source="lh.pargev",
+              ifail=ifail))
 }
 
 
@@ -145,9 +148,9 @@ lh.pargev = function(data, eta=1, opt=FALSE, ntry=5){
 #'
 #' @return A list containing:
 #' \itemize{
-#'   \item \code{eta}: The order of the LH-moments used.
 #'   \item \code{lambdas}: A named numeric vector of the first four theoretical LH-moments.
 #'   \item \code{ratios}: A named numeric vector of the corresponding LH-moment ratios.
+#'   \item \code{eta}: The order of the LH-moments used.
 #' }
 #'
 #' @references Wang, Q. J. (1997). Using higher order L-moments for regional
@@ -200,9 +203,9 @@ lhmom.gev = function(para, eta=NULL){
   for (j in 3:nmom) ratios[j]= lambdas[j]/lambdas[2]
 
   z=list()
-  z$eta=eta
   z$lambdas = as.vector(lambdas)
   z$ratios  = as.vector(ratios)
+  z$eta=eta
   names(z$lambdas) <- paste0("LHmom-",1:nmom)
   names(z$ratios)  <- paste0("LHtau-",1:nmom)
   z
