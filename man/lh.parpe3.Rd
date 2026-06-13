@@ -21,14 +21,14 @@ for the numerical optimization solver when \code{opt = TRUE}. Default is 10.}
 \value{
 A list containing:
 \itemize{
+\item \code{type}: The distribution type (\code{"pe3"}).
 \item \code{para}: A named numeric vector containing the estimated parameters
 (\code{mu} for location, \code{sigma} for scale, \code{gamma} for shape).
 \item \code{eta}: The order of the LH-moments used.
-\item \code{type}: The distribution type (\code{"pe3"}).
+\item \code{source}: The name of the function (\code{"lh.parpe3"}).
 \item \code{ifail}: A numeric indicator of the optimization solver's status
 (0 for success, 2 for partial success, 5 for failure).
 \item \code{precision}: The final function value (\code{fvec}) from the solver.
-\item \code{source}: The name of the function (\code{"lh.parpe3"}).
 }
 }
 \description{
