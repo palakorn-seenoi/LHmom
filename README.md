@@ -1,4 +1,4 @@
-# LHmom: Parameter Estimation and Calculations of Linear Higher-Order Moments
+# **```LHmom```**: Parameter Estimation and Calculations of Linear Higher-Order Moments
 
 The **```LHmom```** package computes sample and theoretical Linear Higher-Order Moments (LH-moments) and implements parameter estimation for various statistical distributions, including the Generalized Extreme Value (GEV), Generalized Logistic (GLO), Generalized Pareto (GPA), Generalized Normal (GNO), Pearson Type III (PE3), and Kappa distributions. It also provides analytical tools such as Wang's goodness-of-fit test. 
 
