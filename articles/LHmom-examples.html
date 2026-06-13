@@ -76,10 +76,19 @@ estimating parameters for the Generalized Extreme Value (GEV)
 distribution, and evaluating the model fit.</p>
 </div>
 <div class="section level2">
-<h2 id="data-preparation">1. Data Preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
+<h2 id="installation">1. Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>First, load the package and the dataset:</p>
+<p>You can install the development version of LHmom from GitHub
+with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"palakorn-seenoi/LHmom"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="data-preparation">2. Data Preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
+</h2>
+<p>Load the package and the dataset:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://palakorn-seenoi.github.io/LHmom/">LHmom</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">)</span></span>
 <span></span>
@@ -94,7 +103,7 @@ distribution, and evaluating the model fit.</p>
 <span><span class="co">#&gt; 6 1956     69.4</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="lh-estimation-for-gev-distribution">2. LH estimation for GEV distribution<a class="anchor" aria-label="anchor" href="#lh-estimation-for-gev-distribution"></a>
+<h2 id="lh-estimation-for-gev-distribution">3. LH estimation for GEV distribution<a class="anchor" aria-label="anchor" href="#lh-estimation-for-gev-distribution"></a>
 </h2>
 <p>Users can compute the sample LH-moments for a given order
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>η</mi><annotation encoding="application/x-tex">\eta</annotation></semantics></math>
@@ -105,7 +114,7 @@ first order of LH-moments
 <div class="section level3">
 <h3 id="calculating-sample-lh-moments">Calculating Sample LH-moments<a class="anchor" aria-label="anchor" href="#calculating-sample-lh-moments"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate sample LH-moments at eta = 1</span></span>
 <span><span class="va">sample_lh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lhmoms.html">lhmoms</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sample_lh</span><span class="op">$</span><span class="va">lambdas</span><span class="op">)</span></span>
@@ -117,7 +126,7 @@ first order of LH-moments
 </h3>
 <p>Next, we estimate the GEV parameters using the calculated sample
 LH-moments:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Estimate GEV parameters (eta = 1)</span></span>
 <span><span class="va">fit_gev</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lh.pargev.html">lh.pargev</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fit_gev</span><span class="op">$</span><span class="va">para</span><span class="op">)</span></span>
@@ -129,7 +138,7 @@ LH-moments:</p>
 </h3>
 <p>To verify the estimation algorithm, we can calculate the theoretical
 LH-moments from our newly fitted parameters:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate theoretical LH-moments from the fitted parameters</span></span>
 <span><span class="va">theo_lh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lhmom.gev.html">lhmom.gev</a></span><span class="op">(</span><span class="va">fit_gev</span><span class="op">$</span><span class="va">para</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">theo_lh</span><span class="op">$</span><span class="va">lambdas</span><span class="op">)</span></span>
@@ -142,7 +151,7 @@ counterparts.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="wangs-goodness-of-fit-test">3. Wang’s Goodness-of-Fit Test<a class="anchor" aria-label="anchor" href="#wangs-goodness-of-fit-test"></a>
+<h2 id="wangs-goodness-of-fit-test">4. Wang’s Goodness-of-Fit Test<a class="anchor" aria-label="anchor" href="#wangs-goodness-of-fit-test"></a>
 </h2>
 <p>A crucial aspect of extreme value analysis is model validation. The
 <code><a href="../reference/wang.test.lhgev.html">wang.test.lhgev()</a></code> function evaluates whether the GEV
@@ -151,7 +160,7 @@ LH-moment orders
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>η</mi><annotation encoding="application/x-tex">\eta</annotation></semantics></math>)
 by calculating a Z-statistic based on the difference between the sample
 and theoretical LH-kurtosis.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Perform Wang's goodness-of-fit test</span></span>
 <span><span class="va">gof_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wang.test.lhgev.html">wang.test.lhgev</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">$</span><span class="va">rainfall</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">gof_test</span><span class="op">)</span></span>
