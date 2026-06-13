@@ -279,3 +279,7 @@ devtools::build_manual(path = getwd())
 usethis::use_vignette("LHmom-examples", "Illustrative Examples of LHmom")
 pkgdown::build_site()
 usethis::use_pkgdown_github_pages()
+
+
+usethis::use_readme_md()
+pkgdown::build_site()
