@@ -26,16 +26,16 @@ lh.pargpa(data, eta = 1)
 
 A list containing:
 
+- `type`: The distribution type (`"gpa"`).
+
 - `para`: A named numeric vector containing the estimated parameters
   (`mu` for location, `sigma` for scale, `k` for shape).
 
 - `eta`: The order of the LH-moments used.
 
-- `type`: The distribution type (`"gpa"`).
+- `source`: The name of the function (`"lh.pargpa"`).
 
 - `ifail`: A numeric indicator of success (0 for success).
-
-- `source`: The name of the function (`"lh.pargpa"`).
 
 ## References
 
