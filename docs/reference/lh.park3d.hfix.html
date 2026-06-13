@@ -79,16 +79,16 @@ attempts for the numerical optimization solver. Default is 10.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list containing:</p><ul><li><p><code>para</code>: A named numeric vector containing the estimated parameters
+    <p>A list containing:</p><ul><li><p><code>type</code>: The distribution type (<code>"kap"</code>).</p></li>
+<li><p><code>para</code>: A named numeric vector containing the estimated parameters
 (<code>mu</code> for location, <code>sigma</code> for scale, <code>k</code> for shape, and <code>hfix</code>).</p></li>
 <li><p><code>eta</code>: The order of the LH-moments used.</p></li>
-<li><p><code>hfix</code>: The fixed value of the shape parameter <code>h</code> used in the estimation.</p></li>
-<li><p><code>type</code>: The distribution type (<code>"kap"</code>).</p></li>
+<li><p><code>source</code>: The name of the function (<code>"lh.park3d.hfix"</code>).</p></li>
 <li><p><code>ifail</code>: A numeric indicator of the optimization solver's status
 (0 for success, 2 for partial success/limit reached, 5 for failure).</p></li>
+<li><p><code>hfix</code>: The fixed value of the shape parameter <code>h</code> used in the estimation.</p></li>
 <li><p><code>precision</code>: The final function value (<code>fvec</code>) from the solver,
 indicating the precision of the root found.</p></li>
-<li><p><code>source</code>: The name of the function (<code>"lh.park3d.hfix"</code>).</p></li>
 </ul></div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
