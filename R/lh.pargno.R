@@ -123,8 +123,11 @@ lh.pargno <- function(data, eta=1, opt=FALSE, ntry=5){
   para= c(xi, alpha, k)
   names(para) <- c("xi","alpha","k")
 
-  return(list(type = "gno", para = para, eta=eta,
-              source="lh.pargno", ifail=ifail))
+  return(list(type = "gno",
+              para = para,
+              eta=eta,
+              source="lh.pargno",
+              ifail=ifail))
 }
 
 
