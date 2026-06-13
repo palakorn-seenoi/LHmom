@@ -20,9 +20,9 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Yire Shin
+  \item Yire Shin \email{shinyire@daum.net}
   \item Piyapatr Busababodhin \email{piyapatr.b@msu.ac.th}
-  \item Jeong-Soo Park
+  \item Jeong-Soo Park \email{jspark@jnu.ac.kr}
 }
 
 }
