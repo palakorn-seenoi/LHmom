@@ -39,10 +39,10 @@ A list containing:
 \item \code{para}: A named numeric vector containing the estimated parameters
 (\code{mu} for location, \code{sigma} for scale, \code{k} and \code{h} for shapes).
 \item \code{eta}: The order of the LH-moments used.
+\item \code{source}: The name of the function (\code{"lh.parkap"}).
 \item \code{ifail}: A numeric indicator of the optimization solver's status
 (0 for success, 1 for fallback success, 5 for failure).
 \item \code{precision}: The final function values from the solver.
-\item \code{source}: The name of the function (\code{"lh.parkap"}).
 \item \code{ifailtext}: A descriptive message regarding the estimation success or failure.
 }
 }
