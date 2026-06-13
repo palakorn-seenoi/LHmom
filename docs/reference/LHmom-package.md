@@ -23,8 +23,8 @@ Useful links:
 
 Authors:
 
-- Yire Shin
+- Yire Shin <shinyire@daum.net>
 
 - Piyapatr Busababodhin <piyapatr.b@msu.ac.th>
 
-- Jeong-Soo Park
+- Jeong-Soo Park <jspark@jnu.ac.kr>
