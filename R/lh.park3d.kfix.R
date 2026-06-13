@@ -68,16 +68,17 @@ lh.parggd = function(data,eta=1){
 #'
 #' @return A list containing:
 #' \itemize{
+#'   \item \code{type}: The distribution type (\code{"kap"}).
 #'   \item \code{para}: A named numeric vector containing the estimated parameters
 #'     (\code{mu} for location, \code{sigma} for scale, \code{kfix}, and \code{h} for shape).
 #'   \item \code{eta}: The order of the LH-moments used.
-#'   \item \code{kfix}: The fixed value of the shape parameter \code{k} used in the estimation.
-#'   \item \code{type}: The distribution type (\code{"kap"}).
+#'   \item \code{source}: The name of the function (\code{"lh.park3d.kfix"}).
 #'   \item \code{ifail}: A numeric indicator of the optimization solver's status
 #'     (0 for success, 2 for partial success/limit reached, 5 for failure).
+#'   \item \code{kfix}: The fixed value of the shape parameter \code{k} used in the estimation.
 #'   \item \code{precision}: The final function value (\code{fvec}) from the solver,
 #'     indicating the precision of the root found.
-#'   \item \code{source}: The name of the function (\code{"lh.park3d.kfix"}).
+
 #' }
 #'
 #' @importFrom nleqslv nleqslv
@@ -219,8 +220,11 @@ lh.park3d.kfix = function(data, eta=1, kfix=0,
   para=c(mu, sigma, k, h)
   names(para)= c("mu", "sigma", "kfix", "h")
 
-  return(list(para = para, eta=eta,
-              kfix=kfix, type="kap",
-              ifail=ifail, precision=fvec,
-              source="lh.park3d.kfix"))
+  return(list(type="kap",
+              para = para,
+              eta=eta,
+              source="lh.park3d.kfix",
+              ifail=ifail,
+              kfix=kfix,
+              precision=fvec) )
 }
