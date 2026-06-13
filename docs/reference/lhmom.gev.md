@@ -28,13 +28,13 @@ lhmom.gev(para, eta = NULL)
 
 A list containing:
 
-- `eta`: The order of the LH-moments used.
-
 - `lambdas`: A named numeric vector of the first four theoretical
   LH-moments.
 
 - `ratios`: A named numeric vector of the corresponding LH-moment
   ratios.
+
+- `eta`: The order of the LH-moments used.
 
 ## References
 
