@@ -25,7 +25,8 @@ home:
     Generalized Pareto (GPA), Generalized Normal (GNO), Pearson Type III (PE3),
     and Kappa distributions.
 
-    It also provides analytical tools such as Wang's goodness-of-fit test.
+    It also provides analytical tools such as
+    Wang's goodness-of-fit test.
 
     The design, parameterization, and output
     structures of this package closely follow the style and conventions of the
