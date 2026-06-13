@@ -10,8 +10,8 @@ The design, parameterization, and output structures of this package closely foll
 
 Explore the full capabilities of the **```LHmom```** package through our detailed guides:
 
-* [**Function Reference**](reference/index.html): Comprehensive details on all functions, grouped by parameter estimation, theoretical calculations, and data sets.
-* [**Illustrative Examples (Articles)**](articles/index.html): A step-by-step tutorial demonstrating how to calculate sample LH-moments, estimate GEV parameters, and perform goodness-of-fit tests using real data. 
+* [**Function Reference**](https://palakorn-seenoi.github.io/LHmom/reference/index.html): Comprehensive details on all functions, grouped by parameter estimation, theoretical calculations, and data sets.
+* [**Illustrative Examples (Articles)**](https://palakorn-seenoi.github.io/LHmom/articles/index.html): A step-by-step tutorial demonstrating how to calculate sample LH-moments, estimate GEV parameters, and perform goodness-of-fit tests using real data. 
 
 ---
 
