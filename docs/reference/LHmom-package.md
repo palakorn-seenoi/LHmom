@@ -11,6 +11,12 @@ the style and conventions of the 'lmomco' package to ensure a familiar
 and consistent interface for users accustomed to L-moment calculations
 in R.
 
+## See also
+
+Useful links:
+
+- <https://palakorn-seenoi.github.io/LHmom/>
+
 ## Author
 
 **Maintainer**: Palakorn Seenoi <palakorns@kku.ac.th>
