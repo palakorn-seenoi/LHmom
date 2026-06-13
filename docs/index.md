@@ -1,6 +1,6 @@
 # LHmom: Parameter Estimation and Calculations of Linear Higher-Order Moments
 
-The **LHmom** package computes sample and theoretical Linear
+The **`LHmom`** package computes sample and theoretical Linear
 Higher-Order Moments (LH-moments) and implements parameter estimation
 for various statistical distributions, including the Generalized Extreme
 Value (GEV), Generalized Logistic (GLO), Generalized Pareto (GPA),
@@ -9,7 +9,7 @@ distributions. It also provides analytical tools such as Wang’s
 goodness-of-fit test.
 
 The design, parameterization, and output structures of this package
-closely follow the style and conventions of the ‘lmomco’ package to
+closely follow the style and conventions of the **`lmomco`** package to
 ensure a familiar and consistent interface for users accustomed to
 L-moment calculations in R.
 
@@ -17,7 +17,7 @@ L-moment calculations in R.
 
 ## 📚 Documentation
 
-Explore the full capabilities of the **LHmom** package through our
+Explore the full capabilities of the **`LHmom`** package through our
 detailed guides:
 
 - [**Function
