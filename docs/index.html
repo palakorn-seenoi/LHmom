@@ -55,48 +55,90 @@ The design, parameterization, and output structures of this package closely foll
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="lhmom-parameter-estimation-and-calculations-of-linear-higher-order-moments">
-<strong><code>LHmom</code></strong>: Parameter Estimation and Calculations of Linear Higher-Order Moments<a class="anchor" aria-label="anchor" href="#lhmom-parameter-estimation-and-calculations-of-linear-higher-order-moments"></a>
+<div class="page-header"><h1 id="lhmom-an-r-package-for-higher-order-l-moment-estimation">LHmom: An R Package for Higher-Order L-Moment Estimation<a class="anchor" aria-label="anchor" href="#lhmom-an-r-package-for-higher-order-l-moment-estimation"></a>
 </h1></div>
-<p>The <strong><code>LHmom</code></strong> package computes sample and theoretical Linear Higher-Order Moments (LH-moments) and implements parameter estimation for various statistical distributions, including the Generalized Extreme Value (GEV), Generalized Logistic (GLO), Generalized Pareto (GPA), Generalized Normal (GNO), Pearson Type III (PE3), and Kappa distributions. It also provides analytical tools such as Wang’s goodness-of-fit test.</p>
-<p>The design, parameterization, and output structures of this package closely follow the style and conventions of the <strong><code>lmomco</code></strong> package to ensure a familiar and consistent interface for users accustomed to L-moment calculations in R.</p>
-<hr>
+<!-- badges: start -->
+
+<p>The <strong>LHmom</strong> package provides a comprehensive framework for parameter estimation using higher-order L-moments (LH-moments). By assigning greater weight to upper-tail observations, LH-moments offer a robust statistical method for extreme value analysis, particularly in hydrological and atmospheric research.</p>
+<p>Furthermore, the design, parameterization, and output structures of this package closely follow the style and conventions of the widely used <code>lmomco</code> package. This ensures a familiar, seamless, and consistent interface for users already accustomed to standard L-moment calculations in R.</p>
 <div class="section level2">
-<h2 id="id_-documentation">📚 Documentation<a class="anchor" aria-label="anchor" href="#id_-documentation"></a>
+<h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
-<p>Explore the full capabilities of the <strong><code>LHmom</code></strong> package through our detailed guides:</p>
 <ul>
 <li>
-<a href="https://palakorn-seenoi.github.io/LHmom/reference/index.html"><strong>Function Reference</strong></a>: Comprehensive details on all functions, grouped by parameter estimation, theoretical calculations, and data sets.</li>
-<li>
-<a href="https://palakorn-seenoi.github.io/LHmom/articles/index.html"><strong>Illustrative Examples (Articles)</strong></a>: A step-by-step tutorial demonstrating how to calculate sample LH-moments, estimate GEV parameters, and perform goodness-of-fit tests using real data.</li>
+<strong>Parameter Estimation:</strong> Supports LH-moment orders zero through four (<code>eta = 0</code> to <code>4</code>) for 10 continuous probability distributions, including:
+<ul>
+<li>Generalized Extreme Value (GEV)</li>
+<li>Generalized Pareto (GPA)</li>
+<li>Generalized Logistic (GLO)</li>
+<li>Generalized Normal (GNO)</li>
+<li>Pearson Type III (PE3)</li>
+<li>Gumbel (GUM)</li>
+<li>Generalized Gumbel (GGD)</li>
+<li>Three-parameter Kappa (fixed <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math> or <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math>)</li>
+<li>Highly flexible Four-parameter Kappa (KAP)</li>
 </ul>
-<hr>
+</li>
+<li>
+<strong>Diagnostic Tools:</strong> Includes universal Quantile-Quantile (Q-Q) plotting for visual goodness-of-fit validation and an explicit implementation of Wang’s goodness-of-fit test for the GEV distribution.</li>
+<li>
+<strong>Built-in Datasets:</strong> Includes historical environmental datasets (<code>bangkok1</code>, <code>khonkaen</code>, and <code>sarakham</code>) for immediate demonstration in flood frequency and extreme climatic event modeling.</li>
+</ul>
 </div>
 <div class="section level2">
-<h2 id="id_-developers--affiliations">📚 Developers &amp; Affiliations<a class="anchor" aria-label="anchor" href="#id_-developers--affiliations"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<ul>
-<li><p><strong>Palakorn Seenoi</strong><br>
-Department of Statistics, Faculty of Science, Khon Kaen University, Thailand<br>
-Email: <a href="mailto:palakorns@kku.ac.th">palakorns@kku.ac.th</a></p></li>
-<li><p><strong>Yire Shin</strong><br>
-Department of Statistics, Chonnam National University, South Korea<br>
-Email: <a href="mailto:shinyire@daum.net">shinyire@daum.net</a></p></li>
-<li><p><strong>Piyapatr Busababodhin</strong><br>
-Department of Mathematics, Faculty of Science, Mahasarakham University, Thailand<br>
-Email: <a href="mailto:piyapatr.b@msu.ac.th">piyapatr.b@msu.ac.th</a></p></li>
-<li><p><strong>Jeong-Soo Park</strong><br>
-Department of Statistics, Chonnam National University, South Korea<br>
-Email: <a href="mailto:jspark@jnu.ac.kr">jspark@jnu.ac.kr</a></p></li>
-</ul>
-<hr>
+<p>You can install the development version of <code>LHmom</code> from GitHub using the <code>devtools</code> package:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Install devtools if not already installed</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install LHmom from GitHub</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"palakorn-seenoi/LHmom"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="quick-start-example">Quick Start Example<a class="anchor" aria-label="anchor" href="#quick-start-example"></a>
+</h2>
+<p>Here is a basic workflow using the built-in <code>bangkok1</code> dataset to estimate parameters for the Generalized Extreme Value (GEV) distribution using the first order of LH-moments (<code>eta = 1</code>):</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://palakorn-seenoi.github.io/LHmom/">LHmom</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load the built-in annual maximum rainfall dataset</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 1. Calculate sample LH-moments at eta = 1</span></span>
+<span><span class="va">sample_lh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/lhmoms.html">lhmoms</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sample_lh</span><span class="op">$</span><span class="va">lambdas</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. Estimate GEV parameters using sample LH-moments</span></span>
+<span><span class="va">fit_gev</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/lh.pargev.html">lh.pargev</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fit_gev</span><span class="op">$</span><span class="va">para</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. Generate Q-Q plot with 95% bootstrap confidence intervals</span></span>
+<span><span class="fu"><a href="reference/lh.qqplot.html">lh.qqplot</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span>, <span class="va">fit_gev</span>, </span>
+<span>          main <span class="op">=</span> <span class="st">"GEV Q-Q Plot (eta = 1)"</span>, </span>
+<span>          ci <span class="op">=</span> <span class="cn">TRUE</span>, ci_level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 4. Perform Wang's goodness-of-fit test for the GEV distribution</span></span>
+<span><span class="fu"><a href="reference/wang.test.lhgev.html">wang.test.lhgev</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use <code>LHmom</code> in your research, please cite the following paper:</p>
+<p>Seenoi, P., Shin, Y., Busababodhin, P., &amp; Park, J.-S. (2026). LHmom: An R Package for higher order L-Moment Estimation. SoftwareX. (Submitted/Under Review)</p>
+</div>
+<div class="section level2">
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h2>
+<p>For questions, bug reports, or feature requests, please open an issue on GitHub or contact Palakorn Seenoi at <a href="mailto:palakorns@kku.ac.th" class="email">palakorns@kku.ac.th</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li>GPL (&gt;= 3)</li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small>GPL (&gt;= 3)</small></li>
 </ul>
 </div>
 
@@ -118,7 +160,13 @@ Email: <a href="mailto:jspark@jnu.ac.kr">jspark@jnu.ac.kr</a></p></li>
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/palakorn-seenoi/LHmom/releases" class="external-link"><img src="https://img.shields.io/github/v/release/palakorn-seenoi/LHmom" alt="GitHub release (latest by date)"></a></li>
+<li><a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/License-GPL%20%28%3E%3E%203%29-blue.svg" alt="License: GPL (&gt;= 3)"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
