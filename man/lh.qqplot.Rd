@@ -10,8 +10,7 @@ lh.qqplot(
   main = "Q-Q Plot",
   ci = FALSE,
   ci.level = 0.95,
-  n.boot = 500,
-  ...
+  n.boot = 500
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ lh.qqplot(
 \item{ci.level}{Numeric; confidence level for the interval (e.g., 0.95 for 95\%).}
 
 \item{n.boot}{Number of bootstrap samples for CI (default is 500).}
-
-\item{...}{Additional graphical parameters passed to \code{plot()}.}
 }
 \value{
 An invisible data frame containing theoretical quantiles, empirical quantiles,
