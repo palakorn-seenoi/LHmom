@@ -28,10 +28,10 @@ Load the package and the dataset:
 ``` r
 
 library(LHmom)
-data(bangkok)
+data(bangkok1)
 
 # View the first few rows
-head(bangkok)
+head(bangkok1)
 #>   year rainfall
 #> 1 1951    133.5
 #> 2 1952    111.0
@@ -53,7 +53,7 @@ first order of LH-moments ($`\eta = 1`$).
 ``` r
 
 # Calculate sample LH-moments at eta = 1
-sample_lh <- lhmoms(bangkok$rainfall, eta = 1)
+sample_lh <- lhmoms(bangkok1$rainfall, eta = 1)
 print(sample_lh$lambdas)
 #>        lhmom-1  lhmom-2  lhmom-3  lhmom-4  lhmom-5
 #> eta=1 126.5447 18.86068 5.220361 3.037946 1.666922
@@ -67,7 +67,7 @@ LH-moments:
 ``` r
 
 # Estimate GEV parameters (eta = 1)
-fit_gev <- lh.pargev(bangkok$rainfall, eta = 1)
+fit_gev <- lh.pargev(bangkok1$rainfall, eta = 1)
 print(fit_gev$para)
 #>          xi       alpha           k 
 #> 87.64384852 28.23812277 -0.06139394
@@ -103,7 +103,7 @@ LH-kurtosis.
 ``` r
 
 # Perform Wang's goodness-of-fit test
-gof_test <- wang.test.lhgev(bangkok$rainfall)
+gof_test <- wang.test.lhgev(bangkok1$rainfall)
 print(gof_test)
 #>   eta       z.test cond.sigma   p.value
 #> 1   0 -0.149710710 0.03581892 0.8809929

@@ -90,10 +90,10 @@ with:</p>
 <p>Load the package and the dataset:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://palakorn-seenoi.github.io/LHmom/">LHmom</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># View the first few rows</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   year rainfall</span></span>
 <span><span class="co">#&gt; 1 1951    133.5</span></span>
 <span><span class="co">#&gt; 2 1952    111.0</span></span>
@@ -116,7 +116,7 @@ first order of LH-moments
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate sample LH-moments at eta = 1</span></span>
-<span><span class="va">sample_lh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lhmoms.html">lhmoms</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">sample_lh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lhmoms.html">lhmoms</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sample_lh</span><span class="op">$</span><span class="va">lambdas</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        lhmom-1  lhmom-2  lhmom-3  lhmom-4  lhmom-5</span></span>
 <span><span class="co">#&gt; eta=1 126.5447 18.86068 5.220361 3.037946 1.666922</span></span></code></pre></div>
@@ -128,7 +128,7 @@ first order of LH-moments
 LH-moments:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Estimate GEV parameters (eta = 1)</span></span>
-<span><span class="va">fit_gev</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lh.pargev.html">lh.pargev</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">fit_gev</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lh.pargev.html">lh.pargev</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span>, eta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fit_gev</span><span class="op">$</span><span class="va">para</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          xi       alpha           k </span></span>
 <span><span class="co">#&gt; 87.64384852 28.23812277 -0.06139394</span></span></code></pre></div>
@@ -162,7 +162,7 @@ by calculating a Z-statistic based on the difference between the sample
 and theoretical LH-kurtosis.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Perform Wang's goodness-of-fit test</span></span>
-<span><span class="va">gof_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wang.test.lhgev.html">wang.test.lhgev</a></span><span class="op">(</span><span class="va">bangkok</span><span class="op">$</span><span class="va">rainfall</span><span class="op">)</span></span>
+<span><span class="va">gof_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wang.test.lhgev.html">wang.test.lhgev</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">gof_test</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   eta       z.test cond.sigma   p.value</span></span>
 <span><span class="co">#&gt; 1   0 -0.149710710 0.03581892 0.8809929</span></span>

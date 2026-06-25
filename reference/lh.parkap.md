@@ -1,11 +1,12 @@
 # Estimate Parameters of the Four-Parameter Kappa Distribution using LH-moments
 
 This function estimates the parameters of the four-parameter Kappa (K4D)
-distribution based on the sample LH-moments. It utilizes numerical
-optimization (`nleqslv`) to simultaneously solve for the two shape
-parameters, `k` and `h`. If the optimization fails or becomes unstable,
-the function provides fallback mechanisms utilizing fixed-parameter
-Kappa estimations. When `eta = 0`, it defaults to the ordinary L-moments
+distribution based on the sample LH-moments. The estimation methodology
+follows Murshed et al. (2014). It utilizes numerical optimization
+(`nleqslv`) to simultaneously solve for the two shape parameters, `k`
+and `h`. If the optimization fails or becomes unstable, the function
+provides fallback mechanisms utilizing fixed-parameter Kappa
+estimations. When `eta = 0`, it defaults to the ordinary L-moments
 estimation via
 [`lmomco::parkap`](https://rdrr.io/pkg/lmomco/man/parkap.html).
 
@@ -74,3 +75,9 @@ A list containing:
 
 - `ifailtext`: A descriptive message regarding the estimation success or
   failure.
+
+## References
+
+Murshed, S., Seo, Y.A., Park, J.S. (2014). LH-moment estimation of a
+four parameter kappa distribution with hydrologic applications.
+*Stochastic Environmental Research and Risk Assessment*, 28, 253-262.

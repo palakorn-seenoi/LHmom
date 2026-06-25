@@ -2,11 +2,11 @@
 
 This function estimates the parameters of the three-parameter Kappa
 distribution based on the sample LH-moments, given a fixed value for the
-shape parameter `k`. It utilizes numerical optimization (`nleqslv`) to
-solve for the second shape parameter `h`. If the numerical solver fails
-to converge, the function implements a fallback mechanism by adopting
-the `h` parameter estimated from the four-parameter Kappa distribution
-(`lh.parkap`).
+shape parameter `k` in the four-parameter Kappa distribution. It
+utilizes numerical optimization (`nleqslv`) to solve for the second
+shape parameter `h`. If the numerical solver fails to converge, the
+function implements a fallback mechanism by adopting the `h` parameter
+estimated from the four-parameter Kappa distribution (`lh.parkap`).
 
 ## Usage
 
