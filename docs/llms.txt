@@ -76,12 +76,17 @@ lh.qqplot(bangkok1$rainfall, fit_gev,
 wang.test.lhgev(bangkok1$rainfall)
 ```
 
+## Documentation
+
+You can find the complete HTML documentation and tutorials at [LHmom
+Online Manual](https://palakorn-seenoi.github.io/LHmom/).
+
 ## Citation
 
 If you use `LHmom` in your research, please cite the following paper:
 
-Seenoi, P., Shin, Y., Busababodhin, P., & Park, J.-S. (2026). LHmom: An
-R Package for higher order L-Moment Estimation. SoftwareX.
+Seenoi, P., Shin, Y., Busababodhin, P., & Park, J.S. (2026). LHmom: An R
+Package for higher order L-Moment Estimation. SoftwareX.
 (Submitted/Under Review)
 
 ## Contact
