@@ -38,7 +38,8 @@ indicating the precision of the root found.
 }
 \description{
 This function estimates the parameters of the three-parameter Kappa distribution
-based on the sample LH-moments, given a fixed value for the shape parameter \code{k}.
+based on the sample LH-moments, given a fixed value for the shape parameter \code{k}
+in the four-parameter Kappa distribution.
 It utilizes numerical optimization (\code{nleqslv}) to solve for the second shape
 parameter \code{h}. If the numerical solver fails to converge, the function
 implements a fallback mechanism by adopting the \code{h} parameter estimated from
