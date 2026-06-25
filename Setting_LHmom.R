@@ -37,6 +37,7 @@ usethis::use_r("lh.parpe3.R")
 usethis::use_r("wang.test.lhgev.R")
 usethis::use_r("theo.lhmom.others.R")
 usethis::use_r("datasets.R")
+usethis::use_r("lh.qqplot.R")
 
 devtools::document()
 
@@ -71,6 +72,13 @@ devtools::document()
 #load_all()
 #rm(list = c("lh.pargno", "lhmom.gno", "lhmoms"))
 #-----------------------------------------------
+
+
+
+usethis::use_gpl3_license()
+
+
+
 
 usethis::use_build_ignore("Setting_LHmom.R")
 
@@ -283,3 +291,8 @@ usethis::use_pkgdown_github_pages()
 
 usethis::use_readme_md()
 pkgdown::build_site()
+
+
+
+usethis::use_gpl_license()
+usethis::use_mit_license()
