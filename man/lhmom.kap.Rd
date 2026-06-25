@@ -25,9 +25,10 @@ A list containing:
 \description{
 This function computes the theoretical LH-moments and LH-moment ratios for
 the four-parameter Kappa (K4D) distribution given its parameters. The computations
-are analytically derived based on the formulas presented by Murshed et al. (2015).
+are analytically derived based on the formulas presented by Murshed et al. (2014).
 }
 \references{
-Murshed, S. M., et al. (2015). Theoretical LH-moments of the Kappa
-distribution. \emph{Stochastic Environmental Research and Risk Assessment (SERRA)}.
+Murshed, S., Seo, Y.A., Park, J.S. (2014).
+LH-moment estimation of a four parameter kappa distribution with hydrologic applications.
+\emph{Stochastic Environmental Research and Risk Assessment}, 28, 253-262.
 }
