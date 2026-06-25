@@ -13,7 +13,6 @@
 #' @param ci Logical; if \code{TRUE}, calculates and plots the bootstrap confidence interval.
 #' @param ci.level Numeric; confidence level for the interval (e.g., 0.95 for 95%).
 #' @param n.boot Number of bootstrap samples for CI (default is 500).
-#' @param ... Additional graphical parameters passed to \code{plot()}.
 #'
 #' @importFrom graphics plot abline polygon points legend
 #' @importFrom stats na.omit quantile
@@ -23,7 +22,7 @@
 #' and CI bounds (if calculated).
 #' @export
 #'
-lh.qqplot <- function(data, fit_obj, main = "Q-Q Plot", ci = FALSE, ci.level = 0.95, n.boot = 500, ...) {
+lh.qqplot <- function(data, fit_obj, main = "Q-Q Plot", ci = FALSE, ci.level = 0.95, n.boot = 500) {
 
   if (is.data.frame(data) || is.list(data)) data <- unlist(data)
   data <- as.numeric(data)
@@ -91,7 +90,7 @@ lh.qqplot <- function(data, fit_obj, main = "Q-Q Plot", ci = FALSE, ci.level = 0
   x_label <- paste0("Theoretical Quantiles (", toupper(dist_type),
                     ifelse(!is.null(eta_val), paste0(", eta = ", eta_val), ""), ")")
 
-  plot(theo_q, data, type = "n", xlab = x_label, ylab = "Empirical Quantiles", main = main, ...)
+  plot(theo_q, data, type = "n", xlab = x_label, ylab = "Empirical Quantiles", main = main)
 
   if (ci && !all(is.na(lower_ci))) {
     polygon(c(theo_q, rev(theo_q)), c(lower_ci, rev(upper_ci)), col = rgb(0, 0, 1, 0.15), border = NA)
