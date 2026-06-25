@@ -1,36 +1,75 @@
-# **```LHmom```**: Parameter Estimation and Calculations of Linear Higher-Order Moments
+# LHmom: An R Package for Higher-Order L-Moment Estimation
 
-The **```LHmom```** package computes sample and theoretical Linear Higher-Order Moments (LH-moments) and implements parameter estimation for various statistical distributions, including the Generalized Extreme Value (GEV), Generalized Logistic (GLO), Generalized Pareto (GPA), Generalized Normal (GNO), Pearson Type III (PE3), and Kappa distributions. It also provides analytical tools such as Wang's goodness-of-fit test. 
+<!-- badges: start -->
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/palakorn-seenoi/LHmom)](https://github.com/palakorn-seenoi/LHmom/releases)
+[![License: GPL (>= 3)](https://img.shields.io/badge/License-GPL%20%28%3E%3E%203%29-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+<!-- badges: end -->
 
-The design, parameterization, and output structures of this package closely follow the style and conventions of the **```lmomco```** package to ensure a familiar and consistent interface for users accustomed to L-moment calculations in R.
+The **LHmom** package provides a comprehensive framework for parameter estimation using higher-order L-moments (LH-moments). 
+By assigning greater weight to upper-tail observations, LH-moments offer a robust statistical method for extreme value analysis, particularly in hydrological and atmospheric research.
 
----
+Furthermore, the design, parameterization, and output structures of this package closely follow the style and conventions of the widely used `lmomco` package. This ensures a familiar, seamless, and consistent interface for users already accustomed to standard L-moment calculations in R.
 
-## 📚 Documentation
 
-Explore the full capabilities of the **```LHmom```** package through our detailed guides:
+## Features
 
-* [**Function Reference**](https://palakorn-seenoi.github.io/LHmom/reference/index.html): Comprehensive details on all functions, grouped by parameter estimation, theoretical calculations, and data sets.
-* [**Illustrative Examples (Articles)**](https://palakorn-seenoi.github.io/LHmom/articles/index.html): A step-by-step tutorial demonstrating how to calculate sample LH-moments, estimate GEV parameters, and perform goodness-of-fit tests using real data. 
+* **Parameter Estimation:** Supports LH-moment orders zero through four (`eta = 0` to `4`) for 10 continuous probability distributions, including:
+  * Generalized Extreme Value (GEV)
+  * Generalized Pareto (GPA)
+  * Generalized Logistic (GLO)
+  * Generalized Normal (GNO)
+  * Pearson Type III (PE3)
+  * Gumbel (GUM)
+  * Generalized Gumbel (GGD)
+  * Three-parameter Kappa (fixed $k$ or $h$)
+  * Highly flexible Four-parameter Kappa (KAP)
+* **Diagnostic Tools:** Includes universal Quantile-Quantile (Q-Q) plotting for visual goodness-of-fit validation and an explicit implementation of Wang's goodness-of-fit test for the GEV distribution.
+* **Built-in Datasets:** Includes historical environmental datasets (`bangkok1`, `khonkaen`, and `sarakham`) for immediate demonstration in flood frequency and extreme climatic event modeling.
 
----
+## Installation
 
-## 📚 Developers & Affiliations
+You can install the development version of `LHmom` from GitHub using the `devtools` package:
 
-* **Palakorn Seenoi**  
-    Department of Statistics, Faculty of Science, Khon Kaen University, Thailand   
-    Email: [palakorns@kku.ac.th](mailto:palakorns@kku.ac.th)
+```R
+# Install devtools if not already installed
+if (!require("devtools")) install.packages("devtools")
 
-* **Yire Shin**  
-    Department of Statistics, Chonnam National University, South Korea  
-    Email: [shinyire@daum.net](mailto:shinyire@daum.net)
-    
-* **Piyapatr Busababodhin**  
-    Department of Mathematics, Faculty of Science, Mahasarakham University, Thailand    
-    Email: [piyapatr.b@msu.ac.th](mailto:piyapatr.b@msu.ac.th)
+# Install LHmom from GitHub
+devtools::install_github("palakorn-seenoi/LHmom")
+```
 
-* **Jeong-Soo Park**  
-    Department of Statistics, Chonnam National University, South Korea  
-    Email: [jspark@jnu.ac.kr](mailto:jspark@jnu.ac.kr)
-    
----
+## Quick Start Example
+Here is a basic workflow using the built-in `bangkok1` dataset to estimate parameters for the Generalized Extreme Value (GEV) distribution using the first order of LH-moments (`eta = 1`):
+
+```R
+library(LHmom)
+
+# Load the built-in annual maximum rainfall dataset
+data(bangkok1)
+
+# 1. Calculate sample LH-moments at eta = 1
+sample_lh <- lhmoms(bangkok1$rainfall, eta = 1)
+print(sample_lh$lambdas)
+
+# 2. Estimate GEV parameters using sample LH-moments
+fit_gev <- lh.pargev(bangkok1$rainfall, eta = 1)
+print(fit_gev$para)
+
+# 3. Generate Q-Q plot with 95% bootstrap confidence intervals
+lh.qqplot(bangkok1$rainfall, fit_gev, 
+          main = "GEV Q-Q Plot (eta = 1)", 
+          ci = TRUE, ci_level = 0.95)
+
+# 4. Perform Wang's goodness-of-fit test for the GEV distribution
+wang.test.lhgev(bangkok1$rainfall)
+```
+
+## Citation
+
+If you use `LHmom` in your research, please cite the following paper:
+
+Seenoi, P., Shin, Y., Busababodhin, P., & Park, J.-S. (2026). LHmom: An R Package for higher order L-Moment Estimation. SoftwareX. (Submitted/Under Review)
+
+
+## Contact
+For questions, bug reports, or feature requests, please open an issue on GitHub or contact Palakorn Seenoi at palakorns@kku.ac.th.
