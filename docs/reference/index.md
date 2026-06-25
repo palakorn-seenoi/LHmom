@@ -2,7 +2,7 @@
 
 ## All functions
 
-- [`bangkok`](https://palakorn-seenoi.github.io/LHmom/reference/bangkok.md)
+- [`bangkok1`](https://palakorn-seenoi.github.io/LHmom/reference/bangkok1.md)
   : Annual Maximum Daily Rainfall for Bangkok, Thailand
 - [`khonkaen`](https://palakorn-seenoi.github.io/LHmom/reference/khonkaen.md)
   : Annual Maximum Daily Rainfall for Khon Kaen, Thailand
@@ -35,6 +35,8 @@
 - [`lh.parpe3()`](https://palakorn-seenoi.github.io/LHmom/reference/lh.parpe3.md)
   : Estimate Parameters of the Pearson Type III (PE3) Distribution using
   LH-moments
+- [`lh.qqplot()`](https://palakorn-seenoi.github.io/LHmom/reference/lh.qqplot.md)
+  : Quantile-Quantile Plot for LH-moments Fitted Distributions
 - [`lhmom.gev()`](https://palakorn-seenoi.github.io/LHmom/reference/lhmom.gev.md)
   : Calculate Theoretical LH-moments for the Generalized Extreme Value
   (GEV) Distribution
