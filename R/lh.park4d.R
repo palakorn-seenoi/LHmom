@@ -11,7 +11,9 @@
 #' Estimate Parameters of the Four-Parameter Kappa Distribution using LH-moments
 #'
 #' This function estimates the parameters of the four-parameter Kappa (K4D) distribution
-#' based on the sample LH-moments. It utilizes numerical optimization (\code{nleqslv})
+#' based on the sample LH-moments.
+#' The estimation methodology follows Murshed et al. (2014).
+#' It utilizes numerical optimization (\code{nleqslv})
 #' to simultaneously solve for the two shape parameters, \code{k} and \code{h}.
 #' If the optimization fails or becomes unstable, the function provides fallback
 #' mechanisms utilizing fixed-parameter Kappa estimations. When \code{eta = 0},
@@ -42,6 +44,10 @@
 #'   \item \code{precision}: The final function values from the solver.
 #'   \item \code{ifailtext}: A descriptive message regarding the estimation success or failure.
 #' }
+#'
+#' @references Murshed, S., Seo, Y.A., Park, J.S. (2014).
+#' LH-moment estimation of a four parameter kappa distribution with hydrologic applications.
+#' \emph{Stochastic Environmental Research and Risk Assessment}, 28, 253-262.
 #'
 #' @importFrom lmomco  lmoms
 #' @importFrom lmomco  parkap
@@ -282,14 +288,14 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
 
 #--------------------------------------------------------------
 # Calculate the theoretical LH moments for K4D,
-# based on Murshed et al.(2015) SERRA
+# based on Murshed et al.(2014) SERRA
 #--------------------------------------------------------------
 
 #' Calculate Theoretical LH-moments for the Four-Parameter Kappa Distribution
 #'
 #' This function computes the theoretical LH-moments and LH-moment ratios for
 #' the four-parameter Kappa (K4D) distribution given its parameters. The computations
-#' are analytically derived based on the formulas presented by Murshed et al. (2015).
+#' are analytically derived based on the formulas presented by Murshed et al. (2014).
 #'
 #' @param para A numeric vector of four parameters: c(xi, alpha, k, h), corresponding
 #'   to the location, scale, and the two shape parameters of the K4D distribution.
@@ -304,8 +310,9 @@ lh.parkap = function(data, eta=1, snap.tau4= TRUE,
 #'   \item \code{type}: The distribution type (\code{"kap"}).
 #' }
 #'
-#' @references Murshed, S. M., et al. (2015). Theoretical LH-moments of the Kappa
-#' distribution. \emph{Stochastic Environmental Research and Risk Assessment (SERRA)}.
+#' @references Murshed, S., Seo, Y.A., Park, J.S. (2014).
+#' LH-moment estimation of a four parameter kappa distribution with hydrologic applications.
+#' \emph{Stochastic Environmental Research and Risk Assessment}, 28, 253-262.
 #'
 #' @importFrom lmomco   lmoms
 #' @importFrom lmomco   vec2par
