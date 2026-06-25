@@ -1,4 +1,5 @@
 library(LHmom)
+library(lmomco)
 data(bangkok)
 
 # Calculate sample LH-moments at eta = 1
@@ -65,6 +66,11 @@ print(theo_df)
 
 
 #---------------------------------------
+
+
+
+
+
 
 
 # 1. โหลดชุดข้อมูล
