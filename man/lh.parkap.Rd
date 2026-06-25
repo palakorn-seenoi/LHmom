@@ -48,9 +48,16 @@ A list containing:
 }
 \description{
 This function estimates the parameters of the four-parameter Kappa (K4D) distribution
-based on the sample LH-moments. It utilizes numerical optimization (\code{nleqslv})
+based on the sample LH-moments.
+The estimation methodology follows Murshed et al. (2014).
+It utilizes numerical optimization (\code{nleqslv})
 to simultaneously solve for the two shape parameters, \code{k} and \code{h}.
 If the optimization fails or becomes unstable, the function provides fallback
 mechanisms utilizing fixed-parameter Kappa estimations. When \code{eta = 0},
 it defaults to the ordinary L-moments estimation via \code{lmomco::parkap}.
+}
+\references{
+Murshed, S., Seo, Y.A., Park, J.S. (2014).
+LH-moment estimation of a four parameter kappa distribution with hydrologic applications.
+\emph{Stochastic Environmental Research and Risk Assessment}, 28, 253-262.
 }
