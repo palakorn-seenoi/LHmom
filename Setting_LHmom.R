@@ -102,6 +102,13 @@ ls("package:LHmom")
 data("khonkaen")
 khonkaen
 
+
+lh.qqplot(bangkok1$rainfall, fit_gev,
+          main = "GEV Q-Q Plot (eta = 1)",
+          ci = TRUE, ci.level = 0.95)
+
+
+
 help(package = "LHmom")
 ?lhmom.k3d.hfix
 ?lhmom.gev
@@ -257,7 +264,7 @@ devtools::build_manual() # PDF
 
 #install.packages("pkgdown") # HTML
 usethis::use_pkgdown()
-
+pkgdown::build_site()
 pkgdown::build_site() # ระบบจะสร้างโฟลเดอร์ใหม่ขึ้นมาในโปรเจกต์ชื่อว่า docs/ ซึ่งข้างในจะเต็มไปด้วยไฟล์หน้าเว็บ .html
 
 devtools::build_manual(path = ".")
