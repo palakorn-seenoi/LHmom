@@ -3,7 +3,7 @@
 ## Introduction
 
 This vignette demonstrates the core functionalities of the `LHmom`
-package using the built-in `bangkok` dataset. This dataset contains the
+package using the built-in `bangkok1` dataset. This dataset contains the
 annual maximum series of daily rainfall in Bangkok, Thailand, from 1951
 to 2025.
 
@@ -91,7 +91,41 @@ Notice the numerical consistency: because the GEV is a three-parameter
 distribution, the estimation algorithm successfully equates the first
 three sample LH-moments with their theoretical counterparts.
 
-## 4. Wang’s Goodness-of-Fit Test
+## 4. Visual Diagnostics with Q-Q plots
+
+Beyond numerical hypothesis testing, visual inspection is essential for
+assessing the adequacy of a fitted distribution. This is particularly
+crucial in extreme value analysis, where the behavior of the upper tail
+is of primary interest.
+
+To facilitate this, the `LHmom` package provides the
+[`lh.qqplot()`](https://palakorn-seenoi.github.io/LHmom/reference/lh.qqplot.md)
+function to generate universal Quantile-Quantile (Q-Q) plots. This
+function plots the empirical quantiles of the observed data against the
+theoretical quantiles derived from the fitted model.
+
+A well-fitted model will have its points closely aligned along the 1:1
+diagonal reference line. Furthermore, by enabling the `ci = TRUE`
+argument, users can overlay a shaded confidence band (e.g., 95%
+confidence interval) to assess the uncertainty of the fit. Ideally, the
+empirical observations should predominantly fall within this shaded
+region.
+
+The following example demonstrates the graphical diagnostic for our GEV
+model fitted with the first-order LH-moments ($`\eta = 1`$), including
+the 95% confidence bounds.
+
+``` r
+
+# Generate Q-Q plot to visually inspect the model fit
+lh.qqplot(bangkok1$rainfall, fit_obj = fit_gev,
+          main = "GEV Q-Q Plot (eta = 1)",
+          ci = TRUE, ci.level = 0.95)
+```
+
+![](LHmom-examples_files/figure-html/qqplot-1.png)
+
+## 5. Wang’s Goodness-of-Fit Test
 
 A crucial aspect of extreme value analysis is model validation. The
 [`wang.test.lhgev()`](https://palakorn-seenoi.github.io/LHmom/reference/wang.test.lhgev.md)

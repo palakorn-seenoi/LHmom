@@ -16,8 +16,7 @@ lh.qqplot(
   main = "Q-Q Plot",
   ci = FALSE,
   ci.level = 0.95,
-  n.boot = 500,
-  ...
+  n.boot = 500
 )
 ```
 
@@ -48,11 +47,6 @@ lh.qqplot(
 - n.boot:
 
   Number of bootstrap samples for CI (default is 500).
-
-- ...:
-
-  Additional graphical parameters passed to
-  [`plot()`](https://rdrr.io/r/graphics/plot.default.html).
 
 ## Value
 

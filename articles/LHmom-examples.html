@@ -68,7 +68,7 @@ Seenoi, Yire Shin, Piyapatr Busababodhin, Jeong-Soo Park</h4>
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>This vignette demonstrates the core functionalities of the
-<code>LHmom</code> package using the built-in <code>bangkok</code>
+<code>LHmom</code> package using the built-in <code>bangkok1</code>
 dataset. This dataset contains the annual maximum series of daily
 rainfall in Bangkok, Thailand, from 1951 to 2025.</p>
 <p>We will walk through the process of calculating sample LH-moments,
@@ -151,7 +151,36 @@ counterparts.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="wangs-goodness-of-fit-test">4. Wang’s Goodness-of-Fit Test<a class="anchor" aria-label="anchor" href="#wangs-goodness-of-fit-test"></a>
+<h2 id="visual-diagnostics-with-q-q-plots">4. Visual Diagnostics with Q-Q plots<a class="anchor" aria-label="anchor" href="#visual-diagnostics-with-q-q-plots"></a>
+</h2>
+<p>Beyond numerical hypothesis testing, visual inspection is essential
+for assessing the adequacy of a fitted distribution. This is
+particularly crucial in extreme value analysis, where the behavior of
+the upper tail is of primary interest.</p>
+<p>To facilitate this, the <code>LHmom</code> package provides the
+<code><a href="../reference/lh.qqplot.html">lh.qqplot()</a></code> function to generate universal
+Quantile-Quantile (Q-Q) plots. This function plots the empirical
+quantiles of the observed data against the theoretical quantiles derived
+from the fitted model.</p>
+<p>A well-fitted model will have its points closely aligned along the
+1:1 diagonal reference line. Furthermore, by enabling the
+<code>ci = TRUE</code> argument, users can overlay a shaded confidence
+band (e.g., 95% confidence interval) to assess the uncertainty of the
+fit. Ideally, the empirical observations should predominantly fall
+within this shaded region.</p>
+<p>The following example demonstrates the graphical diagnostic for our
+GEV model fitted with the first-order LH-moments
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\eta = 1</annotation></semantics></math>),
+including the 95% confidence bounds.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Generate Q-Q plot to visually inspect the model fit</span></span>
+<span><span class="fu"><a href="../reference/lh.qqplot.html">lh.qqplot</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span>, fit_obj <span class="op">=</span> <span class="va">fit_gev</span>,</span>
+<span>          main <span class="op">=</span> <span class="st">"GEV Q-Q Plot (eta = 1)"</span>,</span>
+<span>          ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
+<p><img src="LHmom-examples_files/figure-html/qqplot-1.png" class="r-plt" alt="" width="80%" style="display: block; margin: auto;"></p>
+</div>
+<div class="section level2">
+<h2 id="wangs-goodness-of-fit-test">5. Wang’s Goodness-of-Fit Test<a class="anchor" aria-label="anchor" href="#wangs-goodness-of-fit-test"></a>
 </h2>
 <p>A crucial aspect of extreme value analysis is model validation. The
 <code><a href="../reference/wang.test.lhgev.html">wang.test.lhgev()</a></code> function evaluates whether the GEV
@@ -160,7 +189,7 @@ LH-moment orders
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>η</mi><annotation encoding="application/x-tex">\eta</annotation></semantics></math>)
 by calculating a Z-statistic based on the difference between the sample
 and theoretical LH-kurtosis.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Perform Wang's goodness-of-fit test</span></span>
 <span><span class="va">gof_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wang.test.lhgev.html">wang.test.lhgev</a></span><span class="op">(</span><span class="va">bangkok1</span><span class="op">$</span><span class="va">rainfall</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">gof_test</span><span class="op">)</span></span>
