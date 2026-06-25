@@ -10,14 +10,14 @@
 #'   \item{rainfall}{The annual maximum daily rainfall in millimeters (mm).}
 #' }
 #' @source Thai Meteorological Department (TMD)
-#' @usage data(bangkok)
-#' @name bangkok
+#' @usage data(bangkok1)
+#' @name bangkok1
 #' @docType data
 #'
 #' @examples
-#' data(bangkok)
-#' head(bangkok)
-"bangkok"
+#' data(bangkok1)
+#' head(bangkok1)
+"bangkok1"
 
 
 
