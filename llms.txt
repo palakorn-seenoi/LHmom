@@ -72,7 +72,7 @@ print(fit_gev$para)
 # 3. Generate Q-Q plot with 95% bootstrap confidence intervals
 lh.qqplot(bangkok1$rainfall, fit_gev, 
           main = "GEV Q-Q Plot (eta = 1)", 
-          ci = TRUE, ci_level = 0.95)
+          ci = TRUE, ci.level = 0.95)
 
 # 4. Perform Wang's goodness-of-fit test for the GEV distribution
 wang.test.lhgev(bangkok1$rainfall)
