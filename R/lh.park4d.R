@@ -52,6 +52,18 @@
 #' @importFrom lmomco  lmoms
 #' @importFrom lmomco  parkap
 #' @importFrom nleqslv nleqslv
+#'
+#' @note
+#' **Limitation Note:** When estimating highly flexible models such as the
+#' four-parameter kappa distribution, numerical root-finding algorithms may
+#' occasionally encounter convergence issues. The package outputs an \code{ifail}
+#' diagnostic code, where \code{ifail = 0} indicates successful convergence,
+#' while non-zero values signify specific numerical errors. Practitioners should
+#' be aware that extreme data conditions---such as very small sample sizes or
+#' excessively skewed distributions---can lead to non-convergence. In such
+#' scenarios, falling back to lower-parameter models or standard L-moments
+#' (eta = 0) is recommended.
+#'
 #' @export
 lh.parkap = function(data, eta=1, snap.tau4= TRUE,
                      nudge.tau4=1e-5, hlow= NULL,
