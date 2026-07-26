@@ -302,4 +302,4 @@ pkgdown::build_site()
 
 
 usethis::use_gpl_license()
-usethis::use_mit_license()
+#usethis::use_mit_license()
