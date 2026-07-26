@@ -21,7 +21,7 @@ it defaults to the ordinary L-moments estimation via lmomco::parkap."></head><bo
 
     <a class="navbar-brand me-2" href="../index.html">LHmom</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,6 +117,18 @@ for the numerical optimization solver. Default is 10.</p></dd>
 <li><p><code>precision</code>: The final function values from the solver.</p></li>
 <li><p><code>ifailtext</code>: A descriptive message regarding the estimation success or failure.</p></li>
 </ul></div>
+    <div class="section level2">
+    <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
+    <p><strong>Limitation Note:</strong> When estimating highly flexible models such as the
+four-parameter kappa distribution, numerical root-finding algorithms may
+occasionally encounter convergence issues. The package outputs an <code>ifail</code>
+diagnostic code, where <code>ifail = 0</code> indicates successful convergence,
+while non-zero values signify specific numerical errors. Practitioners should
+be aware that extreme data conditions—such as very small sample sizes or
+excessively skewed distributions—can lead to non-convergence. In such
+scenarios, falling back to lower-parameter models or standard L-moments
+(eta = 0) is recommended.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Murshed, S., Seo, Y.A., Park, J.S. (2014).
