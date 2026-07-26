@@ -27,7 +27,7 @@ lh.pargum(data, eta = 1)
 
 A list containing:
 
-- `type`: The overarching distribution family (`"gev"`).
+- `type`: The distribution type (`"gum"`).
 
 - `para`: A named numeric vector containing the estimated parameters
   (`xi` for location, `alpha` for scale, and `k` = 0 for shape).
@@ -36,4 +36,4 @@ A list containing:
 
 - `source`: The name of the function (`"lh.pargum"`).
 
-- `model`: The specific model name (`"gum"`).
+- `ifail`: A numeric indicator of success (0 for success).
