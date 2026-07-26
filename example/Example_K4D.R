@@ -7,6 +7,9 @@ sample_lh <- lhmoms(bangkok1$rainfall, eta = 2)
 print(sample_lh$lambdas)
 ##         lhmom-1  lhmom-2  lhmom-3  lhmom-4  lhmom-5
 ##  eta=2 139.1185 18.22076 5.464799 2.951366 1.867736
+print(sample_lh$ratios)
+##          lht-1    lht-2     lht-3     lht-4     lht-5
+##  eta=2      NA 0.130973 0.2999215 0.1619782 0.1025059
 
 # Estimate Kappa parameters using sample LH-moments (eta = 2)
 fit_kap <- lh.parkap(bangkok1$rainfall, eta = 2)
@@ -14,19 +17,29 @@ print(fit_kap$para)
 ##          mu      sigma          k          h
 ##  84.4133018 30.7063710 -0.0312735  0.1986932
 
+
+
 # Calculate theoretical LH-moments from the fitted parameters
 theo_lh_kap <- lhmom.kap(fit_kap$para, eta = 2)
 print(theo_lh_kap$lambdas)
 ##    LHmom-1    LHmom-2    LHmom-3    LHmom-4
-## 139.118472  18.220810   5.464870   2.980286
+## 139.118472  18.220761   5.464818   2.951380
+print(theo_lh_kap$ratios)
+##   LHtau-1   LHtau-2   LHtau-3   LHtau-4
+##        NA 0.1309730 0.2999226 0.1619790
 
+
+print(fit_kap$ifailtext)
+
+print(fit_kap$precision)
 
 
 #--------------------------------------------------------------------------------------
 
 # Generate Q-Q plot for Kappa (eta = 2) with 95% bootstrap CI
-lh.qqplot( bangkok1$rainfall, fit_kap, main = "Kappa Q-Q Plot (eta = 2)",
-              ci = TRUE, ci_level = 0.95)
+lh.qqplot( bangkok1$rainfall, fit_kap,
+           main = "Kappa Q-Q Plot (eta = 2)",
+           ci = TRUE, ci.level = 0.95)
 #--------------------------------------------------------------------------------------
 
 
@@ -53,7 +66,7 @@ for (e in etas_kap) {
   # วาด Q-Q Plot พร้อมแถบ CI 95% (เอา RMSE ออกแล้ว)
   lh.qqplot(x, fits_kap[[as.character(e)]],
             main = plot_title,
-            ci = TRUE, ci_level = 0.95)
+            ci = TRUE, ci.level = 0.95)
 }
 dev.off()
 
