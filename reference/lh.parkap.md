@@ -76,6 +76,18 @@ A list containing:
 - `ifailtext`: A descriptive message regarding the estimation success or
   failure.
 
+## Note
+
+**Limitation Note:** When estimating highly flexible models such as the
+four-parameter kappa distribution, numerical root-finding algorithms may
+occasionally encounter convergence issues. The package outputs an
+`ifail` diagnostic code, where `ifail = 0` indicates successful
+convergence, while non-zero values signify specific numerical errors.
+Practitioners should be aware that extreme data conditions—such as very
+small sample sizes or excessively skewed distributions—can lead to
+non-convergence. In such scenarios, falling back to lower-parameter
+models or standard L-moments (eta = 0) is recommended.
+
 ## References
 
 Murshed, S., Seo, Y.A., Park, J.S. (2014). LH-moment estimation of a
