@@ -7,6 +7,9 @@ sample_lh <- lhmoms(bangkok1$rainfall, eta = 1)
 print(sample_lh$lambdas)
 ##        lhmom-1  lhmom-2  lhmom-3  lhmom-4  lhmom-5
 ## eta=1 126.5447 18.86068 5.220361 3.037946 1.666922
+print(sample_lh$ratios)
+##        lht-1     lht-2     lht-3    lht-4      lht-5
+## eta=1     NA 0.1490436 0.2767854 0.161073 0.08838082
 
 # Estimate GEV parameters (eta = 1)
 fit_gev <- lh.pargev(bangkok1$rainfall, eta = 1)
@@ -19,14 +22,16 @@ theo_lh_gev <- lhmom.gev(fit_gev$para, eta = 1)
 print(theo_lh_gev$lambdas)
 #>    LHmom-1    LHmom-2    LHmom-3    LHmom-4
 #> 126.544685  18.860680   5.229035   3.131879
-
-
+print(theo_lh_gev$ratios)
+## LHtau-1   LHtau-2   LHtau-3   LHtau-4
+##      NA 0.1490436 0.2772453 0.1660534
 
 #--------------------------------------------------------------------------------------
 
 # Generate Q-Q plot for GEV ( eta = 1) with 95% bootstrap CI
-lh.qqplot( bangkok1$rainfall, fit_gev, main = "GEV Q-Q Plot (eta = 1)",
-           ci = TRUE, ci_level = 0.95)
+lh.qqplot( bangkok1$rainfall, fit_gev,
+           main = "GEV Q-Q Plot (eta = 1)",
+           ci = TRUE, ci.level = 0.95)
 #--------------------------------------------------------------------------------------
 
 
@@ -68,7 +73,7 @@ for (e in etas) {
   # วาด Q-Q Plot พร้อมแถบ CI 95% และแสดงค่า RMSE
   lh.qqplot(x, fits_gev[[as.character(e)]],
             main = plot_title,
-            ci = TRUE, ci_level = 0.95)
+            ci = TRUE, ci.level = 0.95)
 }
 dev.off()
 
