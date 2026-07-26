@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/palakorn-seenoi/LHmom)](https://github.com/palakorn-seenoi/LHmom/releases)
-[![License: GPL (>= 3)](https://img.shields.io/badge/License-GPL%20%28%3E%3E%203%29-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL (>= 3)](https://img.shields.io/badge/License-GPL%20%28%3E%3D%203%29-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!-- badges: end -->
 
 The **LHmom** package provides a comprehensive framework for parameter estimation using higher-order L-moments (LH-moments). 
