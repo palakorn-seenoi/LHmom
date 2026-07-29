@@ -84,7 +84,7 @@ You can find the complete HTML documentation and tutorials at [LHmom
 Online Manual](https://palakorn-seenoi.github.io/LHmom/).
 
 [![Download User
-Manual](https://img.shields.io/badge/Download-User_Manual_(PDF)-0059b3?style=for-the-badge&logo=minutemailer)](https://github.com/palakorn-seenoi/LHmom/releases/download/v1.0.1/LHmom_Manual_1.0.1.pdf)
+Manual](https://img.shields.io/badge/Download-User_Manual_(PDF)-0059b3?style=for-the-badge&logo=minutemailer)](https://github.com/palakorn-seenoi/LHmom/releases/download/v1.0.2/LHmom_Manual_1.0.2.pdf)
 
 ## Citation
 
