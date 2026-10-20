@@ -1,0 +1,6 @@
+# ซ่อนไฟล์ทุกประเภทจากการคำนวณสัดส่วนภาษา
+* linguist-generated=true
+
+# ยกเว้นให้คำนวณเฉพาะไฟล์โค้ด R เท่านั้น
+*.R linguist-generated=false
+*.r linguist-generated=false
