@@ -77,8 +77,7 @@ You can find the complete HTML documentation and tutorials at [LHmom Online Manu
 
 If you use `LHmom` in your research, please cite the following paper:
 
-Seenoi, P., Shin, Y., Busababodhin, P., & Park, J.S. (2026). LHmom: An R Package for higher order L-Moment Estimation. SoftwareX. (Submitted/Under Review)
-
+Seenoi, P., Shin, Y., Busababodhin, P., & Park, J.-S. (2026). LHmom: An R package for higher order L-Moment estimation. SoftwareX, 102962. https://doi.org/10.1016/j.softx.2026.102962
 
 ## Contact
 For questions, bug reports, or feature requests, please open an issue on GitHub or contact Palakorn Seenoi at palakorns@kku.ac.th.
